@@ -6,14 +6,14 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:03:00 by sqiu              #+#    #+#             */
-/*   Updated: 2023/01/12 14:53:15 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/01/16 15:51:51 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-// Libraries
+// LIBRARIES
 
 # include <fcntl.h>			/* required for opening files */
 # include <stdio.h>
@@ -22,19 +22,52 @@
 # include <errno.h>			/* required for specific error messages */
 # include <math.h>
 # include <stdbool.h>
-
-# include <X11/X.h>
+# include <X11/X.h>			
 /* required for macros related to event names & masks */
 # include <X11/keysym.h>
 /* required for values of all available key symbols */
-
 # include "mlx_linux/mlx.h"
 # include "libft/ft_printf/ft_printf.h"
 # include "libft/gnl/get_next_line_bonus.h"
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// DEFINITIONS
 
-// Structs
+// Window & Coordinates
+# define WINX 				1920
+# define WINY 				1080
+# define X 					0
+# define Y 					1
+# define Z 					2
+# define MENU_WIDTH			350
+# define FIT_MARGIN			50
+
+# define DEFAULT_COLOUR		ORANGE
+# define BOTTOM_COLOUR		BLUE
+# define TOP_COLOUR			BRICK_RED
+# define ZERO_LV_COLOUR		FUCHSIA
+# define BACKGROUND_COLOUR	CARBON
+# define MENU_COLOUR		DISCO
+# define TEXT_COLOUR		GREY
+# define NUMBER_COLOUR		SAFFRON
+
+// Colours
+# define RED 				0xC1272D
+# define GREEN				0x33CC55
+# define FUCHSIA 			0xFF255C
+# define BLUE				0x1B8EFA
+# define SUPERBLUE			0x0000FF
+# define CARBON				0x151515
+# define WHITE				0xBBBBBB
+# define DISCO				0x9A1F6A
+# define BRICK_RED			0xC2294E
+# define FLAMINGO			0xEC4B27
+# define ORANGE				0xEF8633
+# define SAFFRON			0xF3AF3D
+# define GREY				0xEAEAEA
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// STRUCTS
 
 typedef struct s_data
 {
@@ -66,6 +99,7 @@ typedef struct s_point
 {
 	int		coord[3];
 	int		colour;
+	int		hex_colour;
 	bool	paint;
 }	t_point;
 
@@ -73,15 +107,18 @@ typedef struct s_map
 {
 	t_point		*pixel;
 	t_point		limits;
+	t_point		origin;
 	t_colours	colours;
 	char		*buf;
 	char		**lines;
 	int			z_min;
+	int			len;			// find better name
+	double		angle[3];
+	double		z_divisor;
+	double		scale;
+
 }	t_map;
 
-
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-// Check char functions
 
 #endif

@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   initiate.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/09 11:26:52 by sqiu              #+#    #+#             */
-/*   Updated: 2023/01/16 16:19:15 by sqiu             ###   ########.fr       */
+/*   Created: 2023/01/16 15:01:37 by sqiu              #+#    #+#             */
+/*   Updated: 2023/01/16 16:18:59 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include "error.h"
-#include "initiate.h"
+#ifndef INITIATE_H
+# define INITIATE_H
 
-int	main(int argc, char **argv)
-{
-	t_data	data;
+// DEFINTIONS
+# define READ_SIZE 10000
 
-	if (argc != 2)
-		terminate(ERR_ARGC);
-	system_boot(&data.map, argv[1]);
-	return (0);
-}
+// FUNCTIONS
+void	system_boot(t_map *map, char *file);
+void	initiate(t_map map);
+
+#endif
