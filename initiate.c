@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:01:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/01/16 16:20:40 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/01/18 18:33:36 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,22 @@
 void	system_boot(t_map *map, char *file)
 {
 	int		fd;
-	int		sz;
-	int		len;
-	
+	char	*buffer;
+
 	initiate(map);
 	fd = open(file, O_RDONLY);
 	if (fd < 3)
 		terminate(ERR_OPEN);
-	len = 0;
-	while (sz > 0)
+	map->buf = ft_strdup("");
+	buffer = ft_strdup("");
+	while (buffer != NULL)
 	{
-		sz = read(fd, 0, READ_SIZE);
-		if (sz < 0)
-			exit(0);
-		len += sz;
+		free (buffer);
+		buffer = get_next_line(fd);
+		if (buffer)
+			map->buf = ft_strjoin(map->buf, buffer);
 	}
-	buf = malloc (sizeof(char) * len + 1);
-	if (!buf)
-		terminate(ERR_MEM);
+	close(fd);
 }
 
 void	initiate(t_map *map)
