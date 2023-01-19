@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:01:37 by sqiu              #+#    #+#             */
-/*   Updated: 2023/01/16 16:18:59 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/01/19 10:53:02 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 
 // FUNCTIONS
 void	system_boot(t_map *map, char *file);
-void	initiate(t_map map);
+void	initiate(t_map *map);
 
 #endif

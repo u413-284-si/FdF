@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:03:00 by sqiu              #+#    #+#             */
-/*   Updated: 2023/01/16 15:51:51 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/01/19 17:00:41 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,14 +105,14 @@ typedef struct s_point
 
 typedef struct s_map
 {
-	t_point		*pixel;
+	t_point		*point;
 	t_point		limits;
 	t_point		origin;
 	t_colours	colours;
 	char		*buf;
 	char		**lines;
 	int			z_min;
-	int			len;			// find better name
+	int			point_count;
 	double		angle[3];
 	double		z_divisor;
 	double		scale;
