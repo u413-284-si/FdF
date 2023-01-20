@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:03:00 by sqiu              #+#    #+#             */
-/*   Updated: 2023/01/19 17:00:41 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/01/20 13:50:59 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ typedef struct s_point
 {
 	int		coord[3];
 	int		colour;
-	int		hex_colour;
 	bool	paint;
 }	t_point;
 
