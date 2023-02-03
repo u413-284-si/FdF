@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:01:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/01/19 17:10:03 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/03 10:35:51 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "initiate.h"
 #include "error.h"
 #include "parse.h"
+#include "colour.h"
 
 /* This function starts up the program, reads and transforms data providing
 the required input for the following graphical display functions. */
@@ -30,6 +31,8 @@ void	system_boot(t_map *map, char *file)
 	close(fd);
 	map_dim(map);
 	extract_lines(map);
+	colour(map);
+	ft_printf("\nMap reading terminated.\nInitiating GUI.\n");
 }
 
 /* This function initiates all the variables declared in t_map with

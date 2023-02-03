@@ -6,14 +6,16 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:03:00 by sqiu              #+#    #+#             */
-/*   Updated: 2023/01/20 13:50:59 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/03 15:24:47 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-// LIBRARIES
+/* 
+		====== LIBRARIES ======
+*/
 
 # include <fcntl.h>			/* required for opening files */
 # include <stdio.h>
@@ -30,8 +32,9 @@
 # include "libft/ft_printf/ft_printf.h"
 # include "libft/gnl/get_next_line_bonus.h"
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// DEFINITIONS
+/* 
+		====== DEFINITIONS ======
+*/
 
 // Window & Coordinates
 # define WINX 				1920
@@ -66,16 +69,9 @@
 # define SAFFRON			0xF3AF3D
 # define GREY				0xEAEAEA
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// STRUCTS
-
-typedef struct s_data
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	img;
-	t_map	map;
-}	t_data;
+/* 
+		====== STRUCTS ======
+*/
 
 typedef struct s_img
 {
@@ -93,6 +89,8 @@ typedef struct s_colours
 	int		bottom_colour;
 	int		background_colour;
 	int		menu_colour;
+	double	increment_pos[3];
+	double	increment_neg[3];
 }	t_colours;
 
 typedef struct s_point
@@ -118,6 +116,12 @@ typedef struct s_map
 
 }	t_map;
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+typedef struct s_data
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_img	img;
+	t_map	map;
+}	t_data;
 
 #endif

@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initiate.h                                         :+:      :+:    :+:   */
+/*   colour.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 15:01:37 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/01 14:10:22 by sqiu             ###   ########.fr       */
+/*   Created: 2023/02/01 15:12:45 by sqiu              #+#    #+#             */
+/*   Updated: 2023/02/02 17:56:29 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INITIATE_H
-# define INITIATE_H
+#ifndef COLOUR_H
+# define COLOUR_H
 
-// DEFINTIONS
-# define READ_SIZE 10000
+/* 
+		====== FUNCTIONS ======
+*/
 
-// FUNCTIONS
-void	system_boot(t_map *map, char *file);
-void	initiate(t_map *map);
-void	map_dim(t_map *map);
+void	colour(t_map *map);
+void	increment(t_map *map);
+int		gradient(double *increment, int start_colour, int pos);
+int		round(double n);
 
 #endif

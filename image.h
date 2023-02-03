@@ -6,14 +6,17 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:48:21 by sqiu              #+#    #+#             */
-/*   Updated: 2023/01/09 11:48:41 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/03 14:35:59 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef IMAGE_H
 # define IMAGE_H
 
-// Functions
+/* 
+====== FUNCTIONS ======
+*/
 
+void	render_background(t_img *img, int colour);
 
 #endif

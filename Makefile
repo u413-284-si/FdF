@@ -6,7 +6,7 @@
 #    By: sqiu <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/05 10:37:52 by sqiu              #+#    #+#              #
-#    Updated: 2023/01/20 15:08:58 by sqiu             ###   ########.fr        #
+#    Updated: 2023/02/03 10:14:17 by sqiu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@
 
 NAME		= fdf
 INC			= fdf.h
-SRC			= main.c error.c initiate.c parse.c ft_atoi_base.c
+SRC			= main.c error.c initiate.c parse.c ft_atoi_base.c utils.c \
+			colour.c
 
 OBJ			= $(SRC:%.c=%.o) 
 CFLAGS 		= -Wall -Wextra -Werror

@@ -6,13 +6,14 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:50:16 by sqiu              #+#    #+#             */
-/*   Updated: 2023/01/20 15:15:24 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/01/30 16:42:09 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "parse.h"
 #include "error.h"
+#include "utils.h"
 
 /* This functions retrieves the data in the given file descriptor and saves
 it in a map->buf. */
@@ -32,7 +33,7 @@ void	read_file(t_map *map, int fd)
 	}
 }
 
-/* This function mallocs enough space in memory to save all points
+/* This function mallocs enough space in memory to save all point
 specified in the data, extracts the individual lines read from the 
 file and forwards them to the function 'extract_points'. */
 
@@ -58,16 +59,19 @@ void	extract_lines(t_map *map)
 		}
 	}
 	free(line);
-	line = ft_substr(start, 0, &map->buf[i] - start);
-	extract_points(map, line);
-	free(line);
 }
+
+/* This function extracts the data given in 'line' into an array of strings - 
+every string representing one point - and extrapulates the respective
+coordinates and height value (z-value). If colour info is given in the
+string, this value is assigned for the point, else it is assigned the
+default value. */
 
 void	extract_points(t_map *map, char *line, int line_pos)
 {
 	char		**arr;
 	static int	i = -1;
-	static int	point_index = 0;
+	static int	point_index = -1;
 	int			colour;
 
 	arr = ft_split(line, ' ');
@@ -75,7 +79,7 @@ void	extract_points(t_map *map, char *line, int line_pos)
 	{
 		if (!point_check(arr[i]))
 			terminate(ERR_DATA_FORMAT);
-		map->point[point_index].coord[X] = i - map->limits.coord[X] / 2;
+		map->point[++point_index].coord[X] = i - map->limits.coord[X] / 2;
 		map->point[point_index].coord[Y] = line_pos - map->limits.coord[Y] / 2;
 		map->point[point_index].coord[Z] = ft_atoi(arr[i]);
 		colour = colour_given(arr[i]);
@@ -83,8 +87,20 @@ void	extract_points(t_map *map, char *line, int line_pos)
 			map->point[point_index].colour = colour;
 		else
 			map->point[point_index].colour = DEFAULT_COLOUR;
+		map->point[point_index].paint = 1;
+		if (map->limits.coord[Z] < map->point[point_index].coord[Z])
+			map->limits.coord[Z] = map->point[point_index].coord[Z];
+		if (map->z_min > map->point[point_index].coord[Z])
+			map->z_min = map->point[point_index].coord[Z];
 	}
+	free_arr(arr);
 }
+
+/* This function verifies whether information on the colour is given in
+the string. In this instance it follows a specific format
+of colour data being separated by the z-value by a ',' with a
+leading 0x and representation in hexadecimal form. If given, the
+colour is returned as an int, else 0 is returned. */
 
 int	colour_given(char *s)
 {
@@ -95,9 +111,26 @@ int	colour_given(char *s)
 		while (*s != ',')
 			s++;
 		s += 3;
-		colour = ft_atoi_base(s, "0123456789abcdef");
+		if (upper_case(s))
+			colour = ft_atoi_base(s, "0123456789ABCDEF");
+		else
+			colour = ft_atoi_base(s, "0123456789abcdef");
 		return (colour);
 	}
 	else
 		return (0);
+}
+
+/* This function checks whether the given string contains upper
+case characters. Upon success 1 is returned, else 0. */
+
+int	upper_case(char *s)
+{
+	while (*s)
+	{
+		if (*s >= 65 || *s <= 90)
+			return (1);
+		s++;
+	}
+	return (0);
 }
