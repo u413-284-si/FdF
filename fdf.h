@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:03:00 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/03 15:24:47 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/06 17:11:45 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <errno.h>			/* required for specific error messages */
 # include <math.h>
 # include <stdbool.h>
+# include <time.h>			/* required to measure time passed in CPU cycles*/
 # include <X11/X.h>			
 /* required for macros related to event names & masks */
 # include <X11/keysym.h>
@@ -111,7 +112,8 @@ typedef struct s_map
 	int			z_min;
 	int			point_count;
 	double		angle[3];
-	double		z_divisor;
+	double		perf;
+	int			render_count;
 	double		scale;
 
 }	t_map;

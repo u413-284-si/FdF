@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   transformation.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/09 11:26:52 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/06 11:15:11 by sqiu             ###   ########.fr       */
+/*   Created: 2023/02/06 15:59:26 by sqiu              #+#    #+#             */
+/*   Updated: 2023/02/06 16:00:31 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include "error.h"
-#include "initiate.h"
-#include "window.h"
+#ifndef TRANSFORMATION_H
+# define TRANSFORMATION_H
 
-int	main(int argc, char **argv)
-{
-	t_data	data;
+/* 
+====== FUNCTIONS ======
+ */
 
-	if (argc != 2)
-		terminate(ERR_ARGC);
-	system_boot(&data.map, argv[1]);
-	load_gui(&data);
-	free(data.map.point);
-	free(data.map.buf);
-	return (0);
-}
+#endif

@@ -6,14 +6,16 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:48:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/03 15:24:43 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/06 17:06:17 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "image.h"
 
-void	render_background(t_img *img, int colour)
+/* This function is responsible for rendering the background of the image.*/
+
+void	render_background(t_img *img, int background_col, int menu_col)
 {
 	int	i;
 	int	j;
@@ -23,10 +25,21 @@ void	render_background(t_img *img, int colour)
 	{
 		i = 0;
 		while (i < WINX)
-			img_pix_put(img, i++, j, colour);
+		{
+			if (i < MENU_WIDTH)
+				img_pix_put(img, i++, j, menu_col);
+			else
+				img_pix_put(img, i++, j, background_col);
+		}
 		++j;
 	}
 }
+
+/* This function executes the attribution of a given colour to the specified
+pixel (specified by coordinates x and y). 
+	endian = 1 --> Most significant byte first (= alpha)
+	endian = 0 --> Least significant byte first (= blue)
+*/
 
 void	img_pix_put(t_img *img, int x, int y, int colour)
 {
@@ -43,4 +56,9 @@ void	img_pix_put(t_img *img, int x, int y, int colour)
 			*pixel++ = (colour >> (img->bpp - 8 - i)) & 0xFF;
 		i -= 8;
 	}
+}
+
+void	render_map(t_map *map, t_img *img, t_point *prjct)
+{
+	
 }
