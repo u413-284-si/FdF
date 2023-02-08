@@ -6,12 +6,14 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:48:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/06 17:06:17 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/07 18:54:39 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "image.h"
+#include "transformation.h"
+#include "algo.h"
 
 /* This function is responsible for rendering the background of the image.*/
 
@@ -60,5 +62,9 @@ void	img_pix_put(t_img *img, int x, int y, int colour)
 
 void	render_map(t_map *map, t_img *img, t_point *prjct)
 {
-	
+	rotate_z(prjct, map->angle[Z], map->point_count);
+	rotate_x(prjct, map->angle[X], map->point_count);
+	orthographic_prjct(prjct, map->point_count);
+	while ()
+		line_draw(start, end);
 }

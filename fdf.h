@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:03:00 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/06 17:11:45 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/08 19:08:35 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ typedef struct s_point
 {
 	int		coord[3];
 	int		colour;
-	bool	paint;
 }	t_point;
 
 typedef struct s_map
@@ -109,6 +108,7 @@ typedef struct s_map
 	t_colours	colours;
 	char		*buf;
 	char		**lines;
+	int			space;
 	int			z_min;
 	int			point_count;
 	double		angle[3];

@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:50:16 by sqiu              #+#    #+#             */
-/*   Updated: 2023/01/30 16:42:09 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/08 19:27:51 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,11 @@ void	extract_lines(t_map *map)
 
 /* This function extracts the data given in 'line' into an array of strings - 
 every string representing one point - and extrapulates the respective
-coordinates and height value (z-value). If colour info is given in the
-string, this value is assigned for the point, else it is assigned the
-default value. */
+coordinates and height value (z-value). Coordinates are distributed around
+the origin (0,0) of the window (upper left corner) with a space of 10 pixels
+between them horizontally as well as vertically.
+If colour info is given in the string, this value is assigned for the point,
+else it is assigned the default value. */
 
 void	extract_points(t_map *map, char *line, int line_pos)
 {
@@ -79,19 +81,17 @@ void	extract_points(t_map *map, char *line, int line_pos)
 	{
 		if (!point_check(arr[i]))
 			terminate(ERR_DATA_FORMAT);
-		map->point[++point_index].coord[X] = i - map->limits.coord[X] / 2;
-		map->point[point_index].coord[Y] = line_pos - map->limits.coord[Y] / 2;
+		map->point[++point_index].coord[X] = i - \
+			(map->limits.coord[X] / 2) * map->space;
+		map->point[point_index].coord[Y] = line_pos - \
+			(map->limits.coord[Y] / 2) * map->space;
 		map->point[point_index].coord[Z] = ft_atoi(arr[i]);
 		colour = colour_given(arr[i]);
 		if (colour)
 			map->point[point_index].colour = colour;
 		else
 			map->point[point_index].colour = DEFAULT_COLOUR;
-		map->point[point_index].paint = 1;
-		if (map->limits.coord[Z] < map->point[point_index].coord[Z])
-			map->limits.coord[Z] = map->point[point_index].coord[Z];
-		if (map->z_min > map->point[point_index].coord[Z])
-			map->z_min = map->point[point_index].coord[Z];
+		set_z_minmax(map, point_index);
 	}
 	free_arr(arr);
 }
@@ -121,16 +121,13 @@ int	colour_given(char *s)
 		return (0);
 }
 
-/* This function checks whether the given string contains upper
-case characters. Upon success 1 is returned, else 0. */
+/* This function identifies the maximum and minimum z-value of the 
+map.*/
 
-int	upper_case(char *s)
+void	set_z_minmax(t_map *map, int point_index)
 {
-	while (*s)
-	{
-		if (*s >= 65 || *s <= 90)
-			return (1);
-		s++;
-	}
-	return (0);
+	if (map->limits.coord[Z] < map->point[point_index].coord[Z])
+		map->limits.coord[Z] = map->point[point_index].coord[Z];
+	if (map->z_min > map->point[point_index].coord[Z])
+		map->z_min = map->point[point_index].coord[Z];
 }

@@ -6,14 +6,17 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:49:55 by sqiu              #+#    #+#             */
-/*   Updated: 2023/01/09 11:50:25 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/07 18:53:38 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ALGO_H
 # define ALGO_H
 
-// Functions
+/* 
+====== FUNCTIONS ======
+*/
 
+void	line_draw(t_point start, t_point end);
 
 #endif
