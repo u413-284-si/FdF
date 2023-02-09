@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:48:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/07 18:54:39 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/09 17:57:59 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,37 @@ void	img_pix_put(t_img *img, int x, int y, int colour)
 	}
 }
 
+/* This function rotates the map into the required perspective
+and draws lines between the points of the map. */
+
 void	render_map(t_map *map, t_img *img, t_point *prjct)
 {
 	rotate_z(prjct, map->angle[Z], map->point_count);
 	rotate_x(prjct, map->angle[X], map->point_count);
 	orthographic_prjct(prjct, map->point_count);
-	while ()
-		line_draw(start, end);
+	line_draw(prjct, img, map);
+}
+
+/* This function calls the Bresenham algorithm in order to draw a
+line between to given points only when two conditions are met:
+
+The starting point does not
+* lie on the right outer edge of the map
+* lie on the lower edge of the map
+
+ */
+
+void	line_draw(t_point *prjct, t_img *img, t_map *map)
+{
+	int	i;
+
+	i = -1;
+	while (++i < map->point_count)
+	{
+		if ((i + 1) % map->limits.coord[X] != 0)
+			bham(prjct[i], prjct[i + 1], img);
+		if (i < map->limits.coord[X] * map->limits.coord[Y] \
+			- map->limits.coord[X])
+			bham(prjct[i], prjct[i + map->limits.coord[X]]);
+	}
 }
