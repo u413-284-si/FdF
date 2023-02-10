@@ -6,12 +6,13 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:12:37 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/03 10:13:15 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/10 13:20:11 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include "colour.h"
+#include "../inc/fdf.h"
+#include "../inc/colour.h"
+#include "../inc/utils.h"
 
 /* This function applies colour to the respective points according to their
 z-value (height).*/
@@ -83,22 +84,36 @@ int	gradient(double *increment, int start_colour, int pos)
 	int		new[3];
 	int		new_colour;
 
-	new[0] = (start_colour >> 16) + round(increment[0] * pos);
-	new[1] = ((start_colour >> 8) & 0xFF) + round(increment[1] * pos);
-	new[2] = (start_colour & 0xFF) + round(increment[2] * pos);
+	new[0] = (start_colour >> 16) + roundme(increment[0] * pos);
+	new[1] = ((start_colour >> 8) & 0xFF) + roundme(increment[1] * pos);
+	new[2] = (start_colour & 0xFF) + roundme(increment[2] * pos);
 	new_colour = (new[0] << 16) + (new[1] << 8) + new[2];
 	return (new_colour);
 }
 
-/* This function rounds the floating point number n to its correct
-integer value. */
+/* This function calculates the dimension of the colour increments according to
+the distance between two points and their respective colours. 
+It then assigns the appropriate colour according to the position
+along that distance.*/
 
-int	round(double n)
+int	gradient_interpoints(t_point start, t_point end, int pos)
 {
-	int	rounded;
+	int		distance;
+	double	increment[3];
+	int		new[3];
+	int		new_colour;
 
-	rounded = (int) n;
-	if (n - rounded >= 0.5)
-		rounded++;
-	return (rounded);
+	distance = roundme(sqrt(pow(end.coord[Y] - start.coord[Y], 2) \
+		+ pow(end.coord[X] - start.coord[X], 2)));
+	increment[0] = (double)((end.colour >> 16) - (start.colour >> 16)) \
+		/ (double)distance;
+	increment[1] = (double)(((end.colour >> 8) & 0xFF) - \
+		((start.colour >> 8) & 0xFF)) / (double)distance;
+	increment[2] = (double)((end.colour & 0xFF) - (start.colour & 0xFF)) \
+		/ (double)distance;
+	new[0] = (start.colour >> 16) + roundme(increment[0] * pos);
+	new[1] = ((start.colour >> 8) & 0xFF) + roundme(increment[1] * pos);
+	new[2] = (start.colour & 0xFF) + roundme(increment[2] * pos);
+	new_colour = (new[0] << 16) + (new[1] << 8) + new[2];
+	return (new_colour);
 }

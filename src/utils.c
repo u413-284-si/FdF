@@ -6,12 +6,12 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:24:11 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/08 19:20:18 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/10 13:21:33 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include "utils.h"
+#include "../inc/fdf.h"
+#include "../inc/utils.h"
 
 /* This function frees an array which has been malloced with
 subarrays which themselves have been malloced. */
@@ -43,4 +43,17 @@ int	upper_case(char *s)
 		s++;
 	}
 	return (0);
+}
+
+/* This function rounds the floating point number n to its correct
+integer value. */
+
+int	roundme(double n)
+{
+	int	rounded;
+
+	rounded = (int) n;
+	if (n - rounded >= 0.5)
+		rounded++;
+	return (rounded);
 }

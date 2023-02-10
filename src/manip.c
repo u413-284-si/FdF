@@ -6,12 +6,12 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:35:54 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/09 11:52:24 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/10 13:21:12 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include "manip.h"
+#include "../inc/fdf.h"
+#include "../inc/manip.h"
 
 /* This function applies a vector addition of vec2 on vec1 altering the
 values of vec1. */

@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:03:00 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/08 19:08:35 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/10 13:15:38 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@
 /* required for macros related to event names & masks */
 # include <X11/keysym.h>
 /* required for values of all available key symbols */
-# include "mlx_linux/mlx.h"
-# include "libft/ft_printf/ft_printf.h"
-# include "libft/gnl/get_next_line_bonus.h"
+# include "../mlx_linux/mlx.h"
+# include "../libft/ft_printf/ft_printf.h"
+# include "../libft/gnl/get_next_line_bonus.h"
 
 /* 
 		====== DEFINITIONS ======

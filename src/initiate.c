@@ -6,15 +6,15 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:01:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/08 19:09:01 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/10 17:06:15 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include "initiate.h"
-#include "error.h"
-#include "parse.h"
-#include "colour.h"
+#include "../inc/fdf.h"
+#include "../inc/initiate.h"
+#include "../inc/error.h"
+#include "../inc/parse.h"
+#include "../inc/colour.h"
 
 /* This function starts up the program, reads and transforms data providing
 the required input for the following graphical display functions. */
@@ -77,7 +77,7 @@ void	map_dim(t_map *map)
 	{
 		if (map->buf[i] == '\n' && map->buf[i + 1] == '\0')
 			break ;
-		else if (map->buf[i] >= 21 && map->buf[i] <= 126
+		else if (map->buf[i] >= 33 && map->buf[i] <= 126
 			&& (map->buf[i + 1] == ' ' || map->buf[i + 1] == '\n'
 				|| map->buf[i + 1] == '\0'))
 			x_dim++;

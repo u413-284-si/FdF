@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:49:55 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/09 17:23:16 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/10 12:17:11 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ int		sgn(int x);
 void	bham(t_point start, t_point end, t_img *img);
 void	assign_roles(t_point start, t_point end, t_bham algo);
 void	radetzky(t_point start, t_point end, t_bham algo, t_img *img);
-void	set_pixel(t_bham algo, t_img *img);
+void	set_pixel(t_bham algo, t_img *img, t_point start, t_point end);
 
 #endif

@@ -6,14 +6,14 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:48:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/09 17:57:59 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/10 13:20:52 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include "image.h"
-#include "transformation.h"
-#include "algo.h"
+#include "../inc/fdf.h"
+#include "../inc/image.h"
+#include "../inc/transformation.h"
+#include "../inc/algo.h"
 
 /* This function is responsible for rendering the background of the image.*/
 
@@ -74,11 +74,12 @@ void	render_map(t_map *map, t_img *img, t_point *prjct)
 /* This function calls the Bresenham algorithm in order to draw a
 line between to given points only when two conditions are met:
 
-The starting point does not
-* lie on the right outer edge of the map
-* lie on the lower edge of the map
+* The starting point does not draw a line to the right neighbour, if
+it lies on the right outer edge of the map
+* The starting point does not draw a line to its lower neighbour, if
+it lies on the lower edge of the map
 
- */
+*/
 
 void	line_draw(t_point *prjct, t_img *img, t_map *map)
 {
@@ -91,6 +92,6 @@ void	line_draw(t_point *prjct, t_img *img, t_map *map)
 			bham(prjct[i], prjct[i + 1], img);
 		if (i < map->limits.coord[X] * map->limits.coord[Y] \
 			- map->limits.coord[X])
-			bham(prjct[i], prjct[i + map->limits.coord[X]]);
+			bham(prjct[i], prjct[i + map->limits.coord[X]], img);
 	}
 }

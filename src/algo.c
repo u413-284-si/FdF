@@ -6,13 +6,15 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:49:40 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/09 17:20:20 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/10 13:19:44 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include "algo.h"
-#include "image.h"
+#include "../inc/fdf.h"
+#include "../inc/algo.h"
+#include "../inc/image.h"
+#include "../inc/colour.h"
+#include "../inc/utils.h"
 
 /* This function is an implementation of the signum function.*/
 
@@ -97,7 +99,7 @@ void	radetzky(t_point start, t_point end, t_bham algo, t_img *img)
 	algo.x = start.coord[X];
 	algo.y = start.coord[Y];
 	algo.err = algo.delta_fast_direction / 2;
-	set_pixel(algo, img);
+	set_pixel(algo, img, start, end);
 	while (++algo.i < algo.delta_fast_direction)
 	{
 		algo.err -= algo.delta_slow_direction;
@@ -112,21 +114,22 @@ void	radetzky(t_point start, t_point end, t_bham algo, t_img *img)
 			algo.x += algo.pdx;
 			algo.y += algo.pdy;
 		}
-		set_pixel(algo, img);
+		set_pixel(algo, img, start, end);
 	}
 }
 
-/* This function determines if the current pixel has already a colour
-assigned. If not, it assigns the background colour. It then puts
-the according colour to the image. */
+/* This function assigns the appropriate colour to the current pixel
+according to the gradient between the starting and ending point. */
 
-void	set_pixel(t_bham algo, t_img *img)
+void	set_pixel(t_bham algo, t_img *img, t_point start, t_point end)
 {
 	t_point	cur;
+	int		pos;
 
 	cur.coord[X] = algo.x;
 	cur.coord[Y] = algo.y;
-	if (cur.colour == 0)
-		cur.colour == BACKGROUND_COLOUR;
+	pos = roundme(sqrt(pow(cur.coord[Y] - start.coord[Y], 2) + \
+		pow(cur.coord[X] - start.coord[X], 2)));
+	cur.colour = gradient_interpoints(start, end, pos);
 	img_pix_put(img, cur.coord[X], cur.coord[Y], cur.colour);
 }

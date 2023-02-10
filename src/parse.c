@@ -6,14 +6,14 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:50:16 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/08 19:27:51 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/10 18:06:17 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include "parse.h"
-#include "error.h"
-#include "utils.h"
+#include "../inc/fdf.h"
+#include "../inc/parse.h"
+#include "../inc/error.h"
+#include "../inc/utils.h"
 
 /* This functions retrieves the data in the given file descriptor and saves
 it in a map->buf. */
@@ -58,6 +58,7 @@ void	extract_lines(t_map *map)
 			extract_points(map, line, line_count);
 		}
 	}
+	ft_printf("%d", line_count);
 	free(line);
 }
 

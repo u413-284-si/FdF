@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   colour.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/09 11:26:52 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/06 11:15:11 by sqiu             ###   ########.fr       */
+/*   Created: 2023/02/01 15:12:45 by sqiu              #+#    #+#             */
+/*   Updated: 2023/02/10 12:03:17 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include "error.h"
-#include "initiate.h"
-#include "window.h"
+#ifndef COLOUR_H
+# define COLOUR_H
 
-int	main(int argc, char **argv)
-{
-	t_data	data;
+/* 
+		====== FUNCTIONS ======
+*/
 
-	if (argc != 2)
-		terminate(ERR_ARGC);
-	system_boot(&data.map, argv[1]);
-	load_gui(&data);
-	free(data.map.point);
-	free(data.map.buf);
-	return (0);
-}
+void	colour(t_map *map);
+void	increment(t_map *map);
+int		gradient(double *increment, int start_colour, int pos);
+int		gradient_interpoints(t_point start, t_point end, int pos);
+
+#endif

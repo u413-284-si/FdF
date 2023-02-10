@@ -6,12 +6,12 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:59:14 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/07 18:30:13 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/10 13:21:26 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include "transformation.h"
+#include "../inc/fdf.h"
+#include "../inc/transformation.h"
 
 /* This function performs a matrix multiplication of a 3D-vector with a
 3x3 matrix. */

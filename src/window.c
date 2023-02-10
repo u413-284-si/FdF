@@ -6,14 +6,15 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:30:58 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/06 16:43:50 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/10 13:21:42 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include "error.h"
-#include "image.h"
-#include "events.h"
+#include "../inc/fdf.h"
+#include "../inc/window.h"
+#include "../inc/error.h"
+#include "../inc/image.h"
+#include "../inc/events.h"
 
 /* This function initiates and controls the graphical window handling all
 key and mouse events while the window is opened. It serves as a meta
