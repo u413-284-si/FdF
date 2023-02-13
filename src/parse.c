@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:50:16 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/10 18:06:17 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/13 15:55:27 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	extract_lines(t_map *map)
 			extract_points(map, line, line_count);
 		}
 	}
-	ft_printf("%d", line_count);
 	free(line);
 }
 
@@ -73,19 +72,20 @@ else it is assigned the default value. */
 void	extract_points(t_map *map, char *line, int line_pos)
 {
 	char		**arr;
-	static int	i = -1;
+	int			i;
 	static int	point_index = -1;
 	int			colour;
 
 	arr = ft_split(line, ' ');
+	i = -1;
 	while (arr[++i] && arr[i][0] != '\n')
 	{
 		if (!point_check(arr[i]))
 			terminate(ERR_DATA_FORMAT);
-		map->point[++point_index].coord[X] = i - \
-			(map->limits.coord[X] / 2) * map->space;
-		map->point[point_index].coord[Y] = line_pos - \
-			(map->limits.coord[Y] / 2) * map->space;
+		map->point[++point_index].coord[X] = (i - \
+			(map->limits.coord[X] / 2)) * map->space;
+		map->point[point_index].coord[Y] = (line_pos - \
+			(map->limits.coord[Y] / 2)) * map->space;
 		map->point[point_index].coord[Z] = ft_atoi(arr[i]);
 		colour = colour_given(arr[i]);
 		if (colour)
