@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:30:58 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/13 16:29:42 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/15 16:49:42 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,11 @@ int	render(t_data *data)
 	prjct = ft_calloc (data->map.point_count, sizeof(t_point));
 	if (!prjct)
 		terminate(ERR_MEM);
-	ft_memcpy(prjct, data->map.point, (size_t)data->map.point_count + 1);
-	ft_printf("%d\n", data->map.point[45].coord[X]);
-	ft_printf("%d\n", prjct[45].coord[X]);
+	ft_memcpy(prjct, data->map.point, \
+		(size_t)(data->map.point_count * sizeof(t_point)));
 	render_background(&data->img, data->map.colours.background_colour, \
 		data->map.colours.menu_colour);
-	render_map(&data->map, &data->img, prjct);
+	render_map(data, prjct);
 	data->map.render_count += 1;
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, \
 		0, 0);
@@ -70,15 +69,3 @@ int	render(t_data *data)
 	data->map.perf = (double)t / CLOCKS_PER_SEC;
 	return (0);
 }
-
-/* void	duplicate(t_data *data, t_point *src, t_point *dest)
-{
-	int		i;
-
-	i = 0;
-	while (i < data->map.point_count)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-} */

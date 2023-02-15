@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:48:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/10 13:20:52 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/15 17:29:22 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "../inc/image.h"
 #include "../inc/transformation.h"
 #include "../inc/algo.h"
+#include "../inc/colour.h"
+#include "../inc/manip.h"
 
 /* This function is responsible for rendering the background of the image.*/
 
@@ -49,6 +51,8 @@ void	img_pix_put(t_img *img, int x, int y, int colour)
 	int		i;
 
 	i = img->bpp - 8;
+	if (x < 0 || x >= WINX || y < 0 || y >= WINY)
+		return ;
 	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	while (i >= 0)
 	{
@@ -60,15 +64,34 @@ void	img_pix_put(t_img *img, int x, int y, int colour)
 	}
 }
 
+/* This function executes the attribution of a given colour to the specified
+pixel (specified by coordinates x and y). It factors in the alpha value.
+*/
+
+void	alpha_pix_put(t_img *img, int x, int y, int colour)
+{
+	int	pixel;
+	int	alpha;
+
+	alpha = 0;
+	if (x < MENU_WIDTH)
+		alpha = -10;
+	else if (x < 0 || x >= WINX || y < 0 || y >= WINY)
+		return ;
+	pixel = y * img->line_len + x * (img->bpp / 8);
+	ft_printf("%s\n", img->addr);
+	set_colour(&img->addr[pixel], img->endian, colour, alpha);
+}
+
 /* This function rotates the map into the required perspective
 and draws lines between the points of the map. */
 
-void	render_map(t_map *map, t_img *img, t_point *prjct)
+void	render_map(t_data *data, t_point *prjct)
 {
-	rotate_z(prjct, map->angle[Z], map->point_count);
-	rotate_x(prjct, map->angle[X], map->point_count);
-	orthographic_prjct(prjct, map->point_count);
-	line_draw(prjct, img, map);
+	rotate_z(prjct, data->map.angle[Z], data->map.point_count);
+	rotate_x(prjct, data->map.angle[X], data->map.point_count);
+	orthographic_prjct(prjct, data->map.point_count);
+	line_draw(prjct, data);
 }
 
 /* This function calls the Bresenham algorithm in order to draw a
@@ -79,19 +102,31 @@ it lies on the right outer edge of the map
 * The starting point does not draw a line to its lower neighbour, if
 it lies on the lower edge of the map
 
+The given points are shifted to the origin of the map to be rendered.
 */
 
-void	line_draw(t_point *prjct, t_img *img, t_map *map)
+void	line_draw(t_point *prjct, t_data *data)
 {
-	int	i;
+	int		i;
+	t_point	cur;
+	t_point	right;
+	t_point	below;
 
 	i = -1;
-	while (++i < map->point_count)
+	while (++i < data->map.point_count)
 	{
-		if ((i + 1) % map->limits.coord[X] != 0)
-			bham(prjct[i], prjct[i + 1], img);
-		if (i < map->limits.coord[X] * map->limits.coord[Y] \
-			- map->limits.coord[X])
-			bham(prjct[i], prjct[i + map->limits.coord[X]], img);
+		cur = vec_add(prjct[i], data->map.origin);
+		if ((i + 1) % data->map.limits.coord[X] != 0)
+		{
+			right = vec_add(prjct[i + 1], data->map.origin);
+			bham(cur, right, data);
+		}
+		else if (i < data->map.limits.coord[X] * data->map.limits.coord[Y] \
+			- data->map.limits.coord[X])
+		{
+			below = vec_add(prjct[i + data->map.limits.coord[X]], \
+				data->map.origin);
+			bham(cur, below, data);
+		}
 	}
 }

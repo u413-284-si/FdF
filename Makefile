@@ -6,7 +6,7 @@
 #    By: sqiu <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/05 10:37:52 by sqiu              #+#    #+#              #
-#    Updated: 2023/02/10 14:54:56 by sqiu             ###   ########.fr        #
+#    Updated: 2023/02/15 17:31:00 by sqiu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ INC			= $(addprefix ${INCDIR}, ${INCLIST})
 
 SRCDIR		= ./src/
 SRCLIST		= main.c error.c initiate.c parse.c ft_atoi_base.c utils.c \
-			colour.c algo.c events.c image.c transformation.c window.c
+			colour.c algo.c events.c image.c transformation.c window.c \
+			manip.c
 SRC			= $(addprefix ${SRCDIR}, ${SRCLIST})
 
 OBJDIR		= ./obj/

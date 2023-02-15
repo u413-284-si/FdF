@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:49:55 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/10 12:17:11 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/15 16:45:47 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ typedef struct s_bham
 */
 
 int		sgn(int x);
-void	bham(t_point start, t_point end, t_img *img);
+void	bham(t_point start, t_point end, t_data *data);
 void	assign_roles(t_point start, t_point end, t_bham algo);
-void	radetzky(t_point start, t_point end, t_bham algo, t_img *img);
-void	set_pixel(t_bham algo, t_img *img, t_point start, t_point end);
+void	radetzky(t_point start, t_point end, t_bham algo, t_data *data);
+void	set_pixel(t_bham algo, t_data *data, t_point start, t_point end);
 
 #endif

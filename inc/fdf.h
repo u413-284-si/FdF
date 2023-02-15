@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:03:00 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/10 13:15:38 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/15 18:38:24 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@
 # define DEFAULT_COLOUR		ORANGE
 # define BOTTOM_COLOUR		BLUE
 # define TOP_COLOUR			BRICK_RED
-# define ZERO_LV_COLOUR		FUCHSIA
-# define BACKGROUND_COLOUR	CARBON
-# define MENU_COLOUR		DISCO
+# define ZERO_LV_COLOUR		RED
+# define BACKGROUND_COLOUR	WHITE
+# define MENU_COLOUR		LIGHT_CARBON
 # define TEXT_COLOUR		GREY
 # define NUMBER_COLOUR		SAFFRON
 
@@ -62,6 +62,7 @@
 # define BLUE				0x1B8EFA
 # define SUPERBLUE			0x0000FF
 # define CARBON				0x151515
+# define LIGHT_CARBON		0x202020
 # define WHITE				0xBBBBBB
 # define DISCO				0x9A1F6A
 # define BRICK_RED			0xC2294E

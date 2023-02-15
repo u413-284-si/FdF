@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:01:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/13 15:55:18 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/15 18:38:06 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	initiate(t_map *map)
 	map->angle[X] = atan(sqrt(2));
 	map->angle[Y] = 0;
 	map->angle[Z] = 45;
-	map->space = 10;
+	map->space = 50;
 	map->z_min = 0;
 	map->scale = 1;
 	map->perf = 0;

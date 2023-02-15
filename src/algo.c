@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:49:40 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/10 13:19:44 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/15 17:10:13 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ Slow direction: -smaller delta to be covered, following, diagonal step,
 
 */
 
-void	bham(t_point start, t_point end, t_img *img)
+void	bham(t_point start, t_point end, t_data *data)
 {
 	t_bham	algo;
 
 	algo = (t_bham){0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	assign_roles(start, end, algo);
-	radetzky(start, end, algo, img);
+	radetzky(start, end, algo, data);
 }
 
 /* This function determines the direction of the movement of the line_draw
@@ -94,12 +94,12 @@ err >= 0: parallel step pdx and pdy
 
 */
 
-void	radetzky(t_point start, t_point end, t_bham algo, t_img *img)
+void	radetzky(t_point start, t_point end, t_bham algo, t_data *data)
 {
 	algo.x = start.coord[X];
 	algo.y = start.coord[Y];
 	algo.err = algo.delta_fast_direction / 2;
-	set_pixel(algo, img, start, end);
+	set_pixel(algo, data, start, end);
 	while (++algo.i < algo.delta_fast_direction)
 	{
 		algo.err -= algo.delta_slow_direction;
@@ -114,14 +114,14 @@ void	radetzky(t_point start, t_point end, t_bham algo, t_img *img)
 			algo.x += algo.pdx;
 			algo.y += algo.pdy;
 		}
-		set_pixel(algo, img, start, end);
+		set_pixel(algo, data, start, end);
 	}
 }
 
-/* This function assigns the appropriate colour to the current pixel
+/* This function assigns the appropriate colour to the current pixel 
 according to the gradient between the starting and ending point. */
 
-void	set_pixel(t_bham algo, t_img *img, t_point start, t_point end)
+void	set_pixel(t_bham algo, t_data *data, t_point start, t_point end)
 {
 	t_point	cur;
 	int		pos;
@@ -131,5 +131,5 @@ void	set_pixel(t_bham algo, t_img *img, t_point start, t_point end)
 	pos = roundme(sqrt(pow(cur.coord[Y] - start.coord[Y], 2) + \
 		pow(cur.coord[X] - start.coord[X], 2)));
 	cur.colour = gradient_interpoints(start, end, pos);
-	img_pix_put(img, cur.coord[X], cur.coord[Y], cur.colour);
+	alpha_pix_put(&data->img, cur.coord[X], cur.coord[Y], cur.colour);
 }

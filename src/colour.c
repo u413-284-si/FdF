@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:12:37 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/10 13:20:11 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/15 16:08:58 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,4 +116,28 @@ int	gradient_interpoints(t_point start, t_point end, int pos)
 	new[2] = (start.colour & 0xFF) + roundme(increment[2] * pos);
 	new_colour = (new[0] << 16) + (new[1] << 8) + new[2];
 	return (new_colour);
+}
+
+/* This function fills the 4 bytes of the given address with the given
+colour values depending on the endian
+	endian = 1 --> Most significant byte first (= alpha)
+    endian = 0 --> Least significant byte first (= blue)
+*/
+
+void	set_colour(char *address, int endian, int colour, int alpha)
+{
+	if (endian == 1)
+	{
+		address[0] = alpha;
+		address[1] = (colour >> 16) & 0xFF;
+		address[2] = (colour >> 8) & 0xFF;
+		address[3] = (colour) & 0xFF;
+	}
+	else
+	{
+		address[0] = (colour) & 0xFF;
+		address[1] = (colour >> 8) & 0xFF;
+		address[2] = (colour >> 16) & 0xFF;
+		address[3] = alpha;
+	}
 }
