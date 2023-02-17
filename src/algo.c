@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:49:40 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/15 17:10:13 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/17 12:16:13 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ dx < dy: y is the fast direction
 
 void	assign_roles(t_point start, t_point end, t_bham algo)
 {
-	algo.dx = end.coord[X] - start.coord[X];
-	algo.dy = end.coord[Y] - start.coord[Y];
+	algo.dx = end.x - start.x;
+	algo.dy = end.y - start.y;
 	algo.incx = sgn(algo.dx);
 	algo.incy = sgn(algo.dy);
 	if (algo.dx < 0)
@@ -96,8 +96,8 @@ err >= 0: parallel step pdx and pdy
 
 void	radetzky(t_point start, t_point end, t_bham algo, t_data *data)
 {
-	algo.x = start.coord[X];
-	algo.y = start.coord[Y];
+	algo.x = start.x;
+	algo.y = start.y;
 	algo.err = algo.delta_fast_direction / 2;
 	set_pixel(algo, data, start, end);
 	while (++algo.i < algo.delta_fast_direction)
@@ -126,10 +126,10 @@ void	set_pixel(t_bham algo, t_data *data, t_point start, t_point end)
 	t_point	cur;
 	int		pos;
 
-	cur.coord[X] = algo.x;
-	cur.coord[Y] = algo.y;
-	pos = roundme(sqrt(pow(cur.coord[Y] - start.coord[Y], 2) + \
-		pow(cur.coord[X] - start.coord[X], 2)));
+	cur.x = algo.x;
+	cur.y = algo.y;
+	pos = roundme(sqrt(pow(cur.y - start.y, 2) + \
+		pow(cur.x - start.x, 2)));
 	cur.colour = gradient_interpoints(start, end, pos);
-	alpha_pix_put(&data->img, cur.coord[X], cur.coord[Y], cur.colour);
+	alpha_pix_put(&data->img, cur.x, cur.x, cur.colour);
 }

@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:01:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/15 18:38:06 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/17 12:20:54 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ default values. */
 void	initiate(t_map *map)
 {
 	map->point_count = 0;
-	map->limits.coord[X] = 0;
-	map->limits.coord[Y] = 0;
-	map->limits.coord[Z] = 0;
-	map->origin.coord[X] = ((WINX - MENU_WIDTH) / 2) + MENU_WIDTH;
-	map->origin.coord[Y] = WINY / 2;
-	map->origin.coord[Z] = 0;
+	map->limits.x = 0;
+	map->limits.y = 0;
+	map->limits.z = 0;
+	map->origin.x = ((WINX - MENU_WIDTH) / 2) + MENU_WIDTH;
+	map->origin.y = WINY / 2;
+	map->origin.z = 0;
 	map->angle[X] = atan(sqrt(2));
 	map->angle[Y] = 0;
 	map->angle[Z] = 45;
@@ -83,16 +83,16 @@ void	map_dim(t_map *map)
 			x_dim++;
 		else if (map->buf[i] == '\n')
 		{
-			map->limits.coord[Y]++;
-			if (map->limits.coord[X] != 0 && map->limits.coord[X] != x_dim)
+			map->limits.y++;
+			if (map->limits.x != 0 && map->limits.x != x_dim)
 				terminate(ERR_MAP_UNIFORMITY);
 			else
-				map->limits.coord[X] = x_dim;
+				map->limits.x = x_dim;
 			x_dim = 0;
 		}
 	}
-	if (map->limits.coord[X] != 0 && map->limits.coord[X] != x_dim)
+	if (map->limits.x != 0 && map->limits.x != x_dim)
 		terminate(ERR_MAP_UNIFORMITY);
-	map->limits.coord[Y]++;
-	map->point_count = map->limits.coord[X] * map->limits.coord[Y];
+	map->limits.y++;
+	map->point_count = map->limits.x * map->limits.y;
 }

@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:48:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/15 17:29:22 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/17 12:21:23 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,12 @@ void	alpha_pix_put(t_img *img, int x, int y, int colour)
 /* This function rotates the map into the required perspective
 and draws lines between the points of the map. */
 
-void	render_map(t_data *data, t_point *prjct)
+void	render_map(t_data *data)
 {
-	rotate_z(prjct, data->map.angle[Z], data->map.point_count);
-	rotate_x(prjct, data->map.angle[X], data->map.point_count);
-	orthographic_prjct(prjct, data->map.point_count);
-	line_draw(prjct, data);
+	rotate_z(data->map.prjct, data->map.angle[Z], data->map.point_count);
+	rotate_x(data->map.prjct, data->map.angle[X], data->map.point_count);
+	orthographic_prjct(data->map.prjct, data->map.point_count);
+	line_draw(data->map.prjct, data);
 }
 
 /* This function calls the Bresenham algorithm in order to draw a
@@ -116,15 +116,14 @@ void	line_draw(t_point *prjct, t_data *data)
 	while (++i < data->map.point_count)
 	{
 		cur = vec_add(prjct[i], data->map.origin);
-		if ((i + 1) % data->map.limits.coord[X] != 0)
+		if ((i + 1) % data->map.limits.x != 0)
 		{
 			right = vec_add(prjct[i + 1], data->map.origin);
 			bham(cur, right, data);
 		}
-		else if (i < data->map.limits.coord[X] * data->map.limits.coord[Y] \
-			- data->map.limits.coord[X])
+		else if (i < data->map.point_count - data->map.limits.x)
 		{
-			below = vec_add(prjct[i + data->map.limits.coord[X]], \
+			below = vec_add(prjct[i + data->map.limits.x], \
 				data->map.origin);
 			bham(cur, below, data);
 		}

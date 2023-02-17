@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:03:00 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/15 18:38:24 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/17 12:14:32 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 # define Z 					2
 # define MENU_WIDTH			350
 # define FIT_MARGIN			50
+# define ZOOM_FACTOR		1.5
 
 # define DEFAULT_COLOUR		ORANGE
 # define BOTTOM_COLOUR		BLUE
@@ -97,13 +98,16 @@ typedef struct s_colours
 
 typedef struct s_point
 {
-	int		coord[3];
+	int		x;
+	int		y;
+	int		z;
 	int		colour;
 }	t_point;
 
 typedef struct s_map
 {
 	t_point		*point;
+	t_point		*prjct;
 	t_point		limits;
 	t_point		origin;
 	t_colours	colours;

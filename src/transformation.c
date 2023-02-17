@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:59:14 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/10 13:21:26 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/17 14:07:51 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,12 @@
 
 void	mat_mult(float matrix[3][3], t_point prjct)
 {
-	int	i;
-	int	j;
-
-	i = -1;
-	while (++i < 3)
-	{
-		j = -1;
-		while (++j < 3)
-			prjct.coord[i] += matrix[i][j] * prjct.coord[j];
-	}
+	prjct.x = matrix[0][0] * prjct.x + matrix[0][1] * prjct.y + \
+		matrix[0][2] * prjct.z;
+	prjct.y = matrix[1][0] * prjct.x + matrix[1][1] * prjct.y + \
+		matrix[1][2] * prjct.z;
+	prjct.z = matrix[2][0] * prjct.x + matrix[2][1] * prjct.y + \
+		matrix[2][2] * prjct.z;
 }
 
 /* This function performs a rotation in positive direction of the given
@@ -48,6 +44,30 @@ void	rotate_x(t_point *prjct, double angle, int point_count)
 	rotate[1][2] = -sin(rad);
 	rotate[2][0] = 0;
 	rotate[2][1] = sin(rad);
+	rotate[2][2] = cos(rad);
+	i = -1;
+	while (++i < point_count)
+		mat_mult(rotate, prjct[i]);
+}
+
+/* This function performs a rotation in positive direction of the given
+vectors around the y-axis by the given angle. */
+
+void	rotate_y(t_point *prjct, double angle, int point_count)
+{
+	int		i;
+	double	rad;
+	float	rotate[3][3];
+
+	rad = angle * M_PI / 180;
+	rotate[0][0] = cos(rad);
+	rotate[0][1] = 0;
+	rotate[0][2] = sin(rad);
+	rotate[1][0] = 0;
+	rotate[1][1] = 1;
+	rotate[1][2] = 0;
+	rotate[2][0] = -sin(rad);
+	rotate[2][1] = 0;
 	rotate[2][2] = cos(rad);
 	i = -1;
 	while (++i < point_count)

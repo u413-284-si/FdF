@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   transformation.h                                   :+:      :+:    :+:   */
+/*   manip_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/06 15:59:26 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/17 11:46:54 by sqiu             ###   ########.fr       */
+/*   Created: 2023/02/16 12:24:23 by sqiu              #+#    #+#             */
+/*   Updated: 2023/02/16 15:29:05 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TRANSFORMATION_H
-# define TRANSFORMATION_H
+#ifndef MANIP_BONUS_H
+# define MANIP_BONUS_H
 
-/* 
-====== FUNCTIONS ======
- */
+/* ====== FUNCTIONS ====== */
 
-void	mat_mult(float matrix[3][3], t_point prjct);
-void	rotate_x(t_point *prjct, double angle, int point_count);
-void	rotate_y(t_point *prjct, double angle, int point_count);
-void	rotate_z(t_point *prjct, double angle, int point_count);
-void	orthographic_prjct(t_point *prjct, int point_count);
+void	zoom(t_map *map, double factor);
+void	shift(t_map *map, t_point offset);
+void	reset(t_map *map);
+void	scale_z(t_map *map, t_point increment);
 
 #endif

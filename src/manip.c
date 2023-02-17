@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:35:54 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/15 17:17:14 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/17 12:22:56 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,20 @@ t_point	vec_add(t_point vec1, t_point vec2)
 {
 	t_point	rtrn;
 
-	rtrn.coord[X] = vec1.coord[X] + vec2.coord[X];
-	rtrn.coord[Y] = vec1.coord[Y] + vec2.coord[Y];
-	rtrn.coord[Z] = vec1.coord[Z] + vec2.coord[Z];
+	rtrn.x = vec1.x + vec2.x;
+	rtrn.y = vec1.y + vec2.y;
+	rtrn.z = vec1.z + vec2.z;
 	return (rtrn);
 }
 
 /* This function multiplies the vector with a scalar. */
 
-t_point	vec_scalarmult(t_point vec, int scalar)
+t_point	vec_scalarmult(t_point vec, double scalar)
 {
 	t_point	rtrn;
 
-	rtrn.coord[X] = vec.coord[X] * scalar;
-	rtrn.coord[Y] = vec.coord[Y] * scalar;
-	rtrn.coord[Z] = vec.coord[Z] * scalar;
+	rtrn.x = vec.x * scalar;
+	rtrn.y = vec.y * scalar;
+	rtrn.z = vec.z * scalar;
 	return (rtrn);
 }

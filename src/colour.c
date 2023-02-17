@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:12:37 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/15 16:08:58 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/17 12:18:11 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,22 @@ void	colour(t_map *map)
 	{
 		if (map->point[point_index].colour == DEFAULT_COLOUR)
 		{
-			if (map->point[point_index].coord[Z] == map->limits.coord[Z])
+			if (map->point[point_index].z == map->limits.z)
 				map->point[point_index].colour = map->colours.top_colour;
-			else if (map->point[point_index].coord[Z] == map->z_min)
+			else if (map->point[point_index].z == map->z_min)
 				map->point[point_index].colour = map->colours.bottom_colour;
-			else if (map->point[point_index].coord[Z] == 0)
+			else if (map->point[point_index].z == 0)
 				map->point[point_index].colour = map->colours.zero_lv_colour;
-			else if (map->point[point_index].coord[Z] > 0)
+			else if (map->point[point_index].z > 0)
 				map->point[point_index].colour = \
 				gradient(map->colours.increment_pos, \
 				map->colours.zero_lv_colour, \
-				map->point[point_index].coord[Z]);
+				map->point[point_index].z);
 			else
 				map->point[point_index].colour = \
 				gradient(map->colours.increment_neg, \
 				map->colours.bottom_colour, \
-				-map->point[point_index].coord[Z]);
+				-map->point[point_index].z);
 		}
 	}
 }
@@ -56,14 +56,14 @@ void	increment(t_map *map)
 {
 	map->colours.increment_pos[0] = \
 		(double)((map->colours.top_colour >> 16) - \
-		(map->colours.zero_lv_colour >> 16)) / (double)map->limits.coord[Z];
+		(map->colours.zero_lv_colour >> 16)) / (double)map->limits.z;
 	map->colours.increment_pos[1] = \
 		(double)(((map->colours.top_colour >> 8) & 0xFF) - \
 		((map->colours.zero_lv_colour >> 8) & 0xFF)) / \
-		(double)map->limits.coord[Z];
+		(double)map->limits.z;
 	map->colours.increment_pos[2] = \
 		(double)((map->colours.top_colour & 0xFF) - \
-		(map->colours.zero_lv_colour & 0xFF)) / (double)map->limits.coord[Z];
+		(map->colours.zero_lv_colour & 0xFF)) / (double)map->limits.z;
 	map->colours.increment_neg[0] = \
 		(double)((map->colours.zero_lv_colour >> 16) - \
 		(map->colours.bottom_colour >> 16)) / (double)-map->z_min;
@@ -103,8 +103,8 @@ int	gradient_interpoints(t_point start, t_point end, int pos)
 	int		new[3];
 	int		new_colour;
 
-	distance = roundme(sqrt(pow(end.coord[Y] - start.coord[Y], 2) \
-		+ pow(end.coord[X] - start.coord[X], 2)));
+	distance = roundme(sqrt(pow(end.y - start.y, 2) \
+		+ pow(end.x - start.x, 2)));
 	increment[0] = (double)((end.colour >> 16) - (start.colour >> 16)) \
 		/ (double)distance;
 	increment[1] = (double)(((end.colour >> 8) & 0xFF) - \

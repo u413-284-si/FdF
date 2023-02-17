@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:50:16 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/13 15:55:27 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/17 12:23:53 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,11 @@ void	extract_points(t_map *map, char *line, int line_pos)
 	{
 		if (!point_check(arr[i]))
 			terminate(ERR_DATA_FORMAT);
-		map->point[++point_index].coord[X] = (i - \
-			(map->limits.coord[X] / 2)) * map->space;
-		map->point[point_index].coord[Y] = (line_pos - \
-			(map->limits.coord[Y] / 2)) * map->space;
-		map->point[point_index].coord[Z] = ft_atoi(arr[i]);
+		map->point[++point_index].x = (i - \
+			(map->limits.x / 2)) * map->space;
+		map->point[point_index].y = (line_pos - \
+			(map->limits.y / 2)) * map->space;
+		map->point[point_index].z = ft_atoi(arr[i]);
 		colour = colour_given(arr[i]);
 		if (colour)
 			map->point[point_index].colour = colour;
@@ -127,8 +127,8 @@ map.*/
 
 void	set_z_minmax(t_map *map, int point_index)
 {
-	if (map->limits.coord[Z] < map->point[point_index].coord[Z])
-		map->limits.coord[Z] = map->point[point_index].coord[Z];
-	if (map->z_min > map->point[point_index].coord[Z])
-		map->z_min = map->point[point_index].coord[Z];
+	if (map->limits.z < map->point[point_index].z)
+		map->limits.z = map->point[point_index].z;
+	if (map->z_min > map->point[point_index].z)
+		map->z_min = map->point[point_index].z;
 }
