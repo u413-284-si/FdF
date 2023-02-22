@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:07:08 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/17 14:09:22 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/21 17:37:48 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../inc/events_bonus.h"
 #include "../inc/manip_bonus.h"
 #include "../inc/transformation.h"
+#include "../inc/window.h"
 
 /* This function handles all keypress events assigning individual actions
 to each key being pressed. */
@@ -21,10 +22,7 @@ to each key being pressed. */
 int	handle_keypress(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
-	{
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-		data->win_ptr = NULL;
-	}
+		shutdown(data);
 	else if (keysym == XK_plus)
 		zoom(&data->map, ZOOM_FACTOR);
 	else if (keysym == XK_minus)
@@ -45,6 +43,9 @@ int	handle_keypress(int keysym, t_data *data)
 		handle_keypress2(keysym, data);
 	return (0);
 }
+
+/* This function is the continuation of handling all keypress
+events assigning individual actions to each key being pressed. */
 
 int	handle_keypress2(int keysym, t_data *data)
 {

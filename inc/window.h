@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:31:16 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/13 15:10:34 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/22 11:48:00 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 ====== FUNCTIONS ======
 */
 
-void	load_gui(t_data *data);
+int		load_gui(t_data *data);
 int		render(t_data *data);
+int		shutdown(t_data *data);
 
 #endif

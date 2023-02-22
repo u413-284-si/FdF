@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:30:58 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/17 15:11:47 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/22 14:00:54 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,27 @@
 #include "../inc/window.h"
 #include "../inc/error.h"
 #include "../inc/image.h"
-#include "../inc/events.h"
-#include "../inc/events_bonus.h"
 
 /* This function initiates and controls the graphical window handling all
 key and mouse events while the window is opened. It serves as a meta
 function assembling all sub-functions executing the image generation.*/
 
-void	load_gui(t_data *data)
+int	load_gui(t_data *data)
 {
 	data->mlx_ptr = mlx_init();
-	if (data->mlx_ptr == NULL)
-		terminate(ERR_MLX);
+	if (!data->mlx_ptr)
+		return (-1);
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WINX, WINY, \
 					"Get Schwifty by u413");
-	if (data->win_ptr == NULL)
+	if (!data->win_ptr)
 	{
-		free(data->win_ptr);
-		terminate(ERR_MLX);
+		//free(data->win_ptr);
+		return (-1);
 	}
 	data->img.mlx_img = mlx_new_image(data->mlx_ptr, WINX, WINY);
 	data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp, \
 					&data->img.line_len, &data->img.endian);
-	mlx_loop_hook(data->mlx_ptr, &render, data);
-	mlx_do_key_autorepeaton(data->mlx_ptr);
-	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
-	mlx_loop(data->mlx_ptr);
-	mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
-	mlx_destroy_display(data->mlx_ptr);
-	free(data->mlx_ptr);
+	return (0);
 }
 
 /* This function is responsible for the rendering of the image. */
@@ -68,5 +60,26 @@ int	render(t_data *data)
 	free(data->map.prjct);
 	t = clock() - t;
 	data->map.perf = (double)t / CLOCKS_PER_SEC;
+	return (0);
+}
+
+/* This function is responsible for a clean shutdown of the GUI and any
+occupied memory. */
+
+int	shutdown(t_data *data)
+{
+	if (data->mlx_ptr)
+	{
+		if (data->win_ptr)
+		{			
+			mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+			data->win_ptr = NULL;
+		}
+		mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
+		mlx_destroy_display(data->mlx_ptr);
+		free(data->mlx_ptr);
+	}
+	free(data->map.point);
+	free(data->map.buf);
 	return (0);
 }
