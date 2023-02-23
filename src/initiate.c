@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:01:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/17 12:20:54 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/23 17:03:08 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ void	system_boot(t_map *map, char *file)
 	map_dim(map);
 	extract_lines(map);
 	colour(map);
-	ft_printf("\nMap reading terminated.\nInitiating GUI.\n");
+	z_scale(map);
+	copy(map);
+	ft_printf("\nMap reading terminated.\n");
 }
 
 /* This function initiates all the variables declared in t_map with
@@ -55,6 +57,7 @@ void	initiate(t_map *map)
 	map->scale = 1;
 	map->perf = 0;
 	map->render_count = 0;
+	map->z_scale = 1;
 	map->colours.top_colour = TOP_COLOUR;
 	map->colours.zero_lv_colour = ZERO_LV_COLOUR;
 	map->colours.bottom_colour = BOTTOM_COLOUR;
@@ -95,4 +98,30 @@ void	map_dim(t_map *map)
 		terminate(ERR_MAP_UNIFORMITY);
 	map->limits.y++;
 	map->point_count = map->limits.x * map->limits.y;
+}
+
+/* This functions scales the z_value of the points in dependance of the
+proportion of its original value in regards to the x-dimension. */
+
+void	z_scale(t_map *map)
+{
+	int	i;
+
+	if (map->limits.z / map->limits.x < 0.5)
+		map->z_scale = map->limits.z / map->limits.x * 50;
+	i = -1;
+	while (++i < map->point_count)
+		map->point[i].z *= map->z_scale;
+}
+
+/* This function creates a working copy of the original points
+given in the input. */
+
+void	copy(t_map *map)
+{
+	map->prjct = malloc(map->point_count * sizeof(t_point));
+	if (!map->prjct)
+		terminate(ERR_MEM);
+	ft_memcpy(map->prjct, map->point, \
+		(size_t)(map->point_count * sizeof(t_point)));
 }

@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:59:14 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/17 14:07:51 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/23 10:45:41 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 /* This function performs a matrix multiplication of a 3D-vector with a
 3x3 matrix. */
 
-void	mat_mult(float matrix[3][3], t_point prjct)
+void	mat_mult(float matrix[3][3], t_point *prjct)
 {
-	prjct.x = matrix[0][0] * prjct.x + matrix[0][1] * prjct.y + \
-		matrix[0][2] * prjct.z;
-	prjct.y = matrix[1][0] * prjct.x + matrix[1][1] * prjct.y + \
-		matrix[1][2] * prjct.z;
-	prjct.z = matrix[2][0] * prjct.x + matrix[2][1] * prjct.y + \
-		matrix[2][2] * prjct.z;
+	prjct->x = matrix[0][0] * prjct->x + matrix[0][1] * prjct->y + \
+		matrix[0][2] * prjct->z;
+	prjct->y = matrix[1][0] * prjct->x + matrix[1][1] * prjct->y + \
+		matrix[1][2] * prjct->z;
+	prjct->z = matrix[2][0] * prjct->x + matrix[2][1] * prjct->y + \
+		matrix[2][2] * prjct->z;
 }
 
 /* This function performs a rotation in positive direction of the given
@@ -47,7 +47,7 @@ void	rotate_x(t_point *prjct, double angle, int point_count)
 	rotate[2][2] = cos(rad);
 	i = -1;
 	while (++i < point_count)
-		mat_mult(rotate, prjct[i]);
+		mat_mult(rotate, &prjct[i]);
 }
 
 /* This function performs a rotation in positive direction of the given
@@ -71,7 +71,7 @@ void	rotate_y(t_point *prjct, double angle, int point_count)
 	rotate[2][2] = cos(rad);
 	i = -1;
 	while (++i < point_count)
-		mat_mult(rotate, prjct[i]);
+		mat_mult(rotate, &prjct[i]);
 }
 
 /* This function performs a rotation in positive direction of the given
@@ -95,7 +95,7 @@ void	rotate_z(t_point *prjct, double angle, int point_count)
 	rotate[2][2] = 1;
 	i = -1;
 	while (++i < point_count)
-		mat_mult(rotate, prjct[i]);
+		mat_mult(rotate, &prjct[i]);
 }
 
 /* This function performs an orthographic projection - therefore
@@ -118,5 +118,5 @@ void	orthographic_prjct(t_point *prjct, int point_count)
 	ortho[2][2] = 0;
 	i = -1;
 	while (++i < point_count)
-		mat_mult(ortho, prjct[i]);
+		mat_mult(ortho, &prjct[i]);
 }

@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:03:00 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/22 11:25:19 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/23 14:52:59 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ typedef struct s_map
 	double		perf;
 	int			render_count;
 	double		scale;
-
+	double		z_scale;
 }	t_map;
 
 typedef struct s_data

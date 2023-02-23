@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:48:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/17 12:21:23 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/23 17:01:42 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,30 +68,29 @@ void	img_pix_put(t_img *img, int x, int y, int colour)
 pixel (specified by coordinates x and y). It factors in the alpha value.
 */
 
-void	alpha_pix_put(t_img *img, int x, int y, int colour)
+void	alpha_pix_put(t_data *data, int x, int y, int colour)
 {
-	int	pixel;
-	int	alpha;
+	char	*pixel;
+	int		alpha;
 
 	alpha = 0;
 	if (x < MENU_WIDTH)
 		alpha = -10;
 	else if (x < 0 || x >= WINX || y < 0 || y >= WINY)
 		return ;
-	pixel = y * img->line_len + x * (img->bpp / 8);
-	ft_printf("%s\n", img->addr);
-	set_colour(&img->addr[pixel], img->endian, colour, alpha);
+	pixel = data->img.addr + (y * data->img.line_len + x * (data->img.bpp / 8));
+	if (data->img.bpp != 32)
+		colour = mlx_get_color_value(data->mlx_ptr, colour);
+	set_colour(pixel, data->img.endian, colour, alpha);
 }
 
-/* This function rotates the map into the required perspective
-and draws lines between the points of the map. */
+/* This function rotates the map into the required perspective. */
 
-void	render_map(t_data *data)
+void	put_i_persp(t_data *data)
 {
 	rotate_z(data->map.prjct, data->map.angle[Z], data->map.point_count);
 	rotate_x(data->map.prjct, data->map.angle[X], data->map.point_count);
-	orthographic_prjct(data->map.prjct, data->map.point_count);
-	line_draw(data->map.prjct, data);
+	//orthographic_prjct(data->map.prjct, data->map.point_count);
 }
 
 /* This function calls the Bresenham algorithm in order to draw a
@@ -105,7 +104,7 @@ it lies on the lower edge of the map
 The given points are shifted to the origin of the map to be rendered.
 */
 
-void	line_draw(t_point *prjct, t_data *data)
+void	render_map(t_point *prjct, t_data *data)
 {
 	int		i;
 	t_point	cur;

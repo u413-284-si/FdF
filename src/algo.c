@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:49:40 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/17 12:16:13 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/23 13:39:03 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	bham(t_point start, t_point end, t_data *data)
 	t_bham	algo;
 
 	algo = (t_bham){0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-	assign_roles(start, end, algo);
-	radetzky(start, end, algo, data);
+	assign_roles(start, end, &algo);
+	radetzky(start, end, &algo, data);
 }
 
 /* This function determines the direction of the movement of the line_draw
@@ -57,31 +57,31 @@ dx < dy: y is the fast direction
 
 */
 
-void	assign_roles(t_point start, t_point end, t_bham algo)
+void	assign_roles(t_point start, t_point end, t_bham *algo)
 {
-	algo.dx = end.x - start.x;
-	algo.dy = end.y - start.y;
-	algo.incx = sgn(algo.dx);
-	algo.incy = sgn(algo.dy);
-	if (algo.dx < 0)
-		algo.dx *= -1;
-	if (algo.dy < 0)
-		algo.dy *= -1;
-	algo.ddx = algo.incx;
-	algo.ddy = algo.incy;
-	if (algo.dx > algo.dy)
+	algo->dx = end.x - start.x;
+	algo->dy = end.y - start.y;
+	algo->incx = sgn(algo->dx);
+	algo->incy = sgn(algo->dy);
+	if (algo->dx < 0)
+		algo->dx *= -1;
+	if (algo->dy < 0)
+		algo->dy *= -1;
+	algo->ddx = algo->incx;
+	algo->ddy = algo->incy;
+	if (algo->dx > algo->dy)
 	{
-		algo.pdx = algo.incx;
-		algo.pdy = 0;
-		algo.delta_fast_direction = algo.dx;
-		algo.delta_slow_direction = algo.dy;
+		algo->pdx = algo->incx;
+		algo->pdy = 0;
+		algo->delta_fast_direction = algo->dx;
+		algo->delta_slow_direction = algo->dy;
 	}
 	else
 	{
-		algo.pdx = 0;
-		algo.pdy = algo.incy;
-		algo.delta_fast_direction = algo.dy;
-		algo.delta_slow_direction = algo.dx;
+		algo->pdx = 0;
+		algo->pdy = algo->incy;
+		algo->delta_fast_direction = algo->dy;
+		algo->delta_slow_direction = algo->dx;
 	}
 }
 
@@ -94,25 +94,25 @@ err >= 0: parallel step pdx and pdy
 
 */
 
-void	radetzky(t_point start, t_point end, t_bham algo, t_data *data)
+void	radetzky(t_point start, t_point end, t_bham *algo, t_data *data)
 {
-	algo.x = start.x;
-	algo.y = start.y;
-	algo.err = algo.delta_fast_direction / 2;
+	algo->x = start.x;
+	algo->y = start.y;
+	algo->err = algo->delta_fast_direction / 2;
 	set_pixel(algo, data, start, end);
-	while (++algo.i < algo.delta_fast_direction)
+	while (++algo->i < algo->delta_fast_direction)
 	{
-		algo.err -= algo.delta_slow_direction;
-		if (algo.err < 0)
+		algo->err -= algo->delta_slow_direction;
+		if (algo->err < 0)
 		{
-			algo.err += algo.delta_fast_direction;
-			algo.x += algo.ddx;
-			algo.y += algo.ddy;
+			algo->err += algo->delta_fast_direction;
+			algo->x += algo->ddx;
+			algo->y += algo->ddy;
 		}
 		else
 		{
-			algo.x += algo.pdx;
-			algo.y += algo.pdy;
+			algo->x += algo->pdx;
+			algo->y += algo->pdy;
 		}
 		set_pixel(algo, data, start, end);
 	}
@@ -121,15 +121,17 @@ void	radetzky(t_point start, t_point end, t_bham algo, t_data *data)
 /* This function assigns the appropriate colour to the current pixel 
 according to the gradient between the starting and ending point. */
 
-void	set_pixel(t_bham algo, t_data *data, t_point start, t_point end)
+void	set_pixel(t_bham *algo, t_data *data, t_point start, t_point end)
 {
 	t_point	cur;
 	int		pos;
 
-	cur.x = algo.x;
-	cur.y = algo.y;
+	(void) end;
+	cur.x = algo->x;
+	cur.y = algo->y;
 	pos = roundme(sqrt(pow(cur.y - start.y, 2) + \
 		pow(cur.x - start.x, 2)));
+	//cur.colour = DEFAULT_COLOUR;
 	cur.colour = gradient_interpoints(start, end, pos);
-	alpha_pix_put(&data->img, cur.x, cur.x, cur.colour);
+	alpha_pix_put(data, cur.x, cur.y, cur.colour);
 }
