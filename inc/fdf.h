@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:03:00 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/23 14:52:59 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/24 16:40:23 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@
 # define Y 					1
 # define Z 					2
 # define MENU_WIDTH			350
-# define FIT_MARGIN			50
-# define ZOOM_FACTOR		1.5
+# define FIT_MARGIN			100
+# define ZOOM_FACTOR		1.1
+# define ISO				35.264
 
 # define DEFAULT_COLOUR		ORANGE
 # define BOTTOM_COLOUR		BLUE
@@ -114,7 +115,12 @@ typedef struct s_map
 	char		*buf;
 	char		**lines;
 	int			space;
+	int			x_min;
+	int			x_max;
+	int			y_min;
+	int			y_max;
 	int			z_min;
+	int			z_max;
 	int			point_count;
 	double		angle[3];
 	double		perf;

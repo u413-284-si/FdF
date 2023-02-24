@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:49:40 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/23 13:39:03 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/24 10:09:42 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	bham(t_point start, t_point end, t_data *data)
 {
 	t_bham	algo;
 
-	algo = (t_bham){0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	algo = (t_bham){0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	assign_roles(start, end, &algo);
 	radetzky(start, end, &algo, data);
 }
@@ -129,6 +129,7 @@ void	set_pixel(t_bham *algo, t_data *data, t_point start, t_point end)
 	(void) end;
 	cur.x = algo->x;
 	cur.y = algo->y;
+	cur.z = start.z;
 	pos = roundme(sqrt(pow(cur.y - start.y, 2) + \
 		pow(cur.x - start.x, 2)));
 	//cur.colour = DEFAULT_COLOUR;

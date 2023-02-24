@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:48:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/23 17:01:42 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/24 21:16:45 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "../inc/algo.h"
 #include "../inc/colour.h"
 #include "../inc/manip.h"
+#include "../inc/lines.h"
 
 /* This function is responsible for rendering the background of the image.*/
 
@@ -88,9 +89,9 @@ void	alpha_pix_put(t_data *data, int x, int y, int colour)
 
 void	put_i_persp(t_data *data)
 {
-	rotate_z(data->map.prjct, data->map.angle[Z], data->map.point_count);
-	rotate_x(data->map.prjct, data->map.angle[X], data->map.point_count);
-	//orthographic_prjct(data->map.prjct, data->map.point_count);
+	rotate_z(data->map.point, data->map.angle[Z], data->map.point_count);
+	rotate_x(data->map.point, data->map.angle[X], data->map.point_count);
+	orthographic_prjct(data->map.point, data->map.point_count);
 }
 
 /* This function calls the Bresenham algorithm in order to draw a
@@ -104,7 +105,7 @@ it lies on the lower edge of the map
 The given points are shifted to the origin of the map to be rendered.
 */
 
-void	render_map(t_point *prjct, t_data *data)
+void	render_map(t_point *point, t_data *data)
 {
 	int		i;
 	t_point	cur;
@@ -114,15 +115,15 @@ void	render_map(t_point *prjct, t_data *data)
 	i = -1;
 	while (++i < data->map.point_count)
 	{
-		cur = vec_add(prjct[i], data->map.origin);
+		cur = vec_add(point[i], data->map.origin);
 		if ((i + 1) % data->map.limits.x != 0)
 		{
-			right = vec_add(prjct[i + 1], data->map.origin);
+			right = vec_add(point[i + 1], data->map.origin);
 			bham(cur, right, data);
 		}
-		else if (i < data->map.point_count - data->map.limits.x)
+		if (i < data->map.point_count - data->map.limits.x)
 		{
-			below = vec_add(prjct[i + data->map.limits.x], \
+			below = vec_add(point[i + data->map.limits.x], \
 				data->map.origin);
 			bham(cur, below, data);
 		}

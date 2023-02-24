@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:30:58 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/23 17:35:17 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/24 21:16:01 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ int	render(t_data *data)
 {
 	clock_t	t;
 
-	if (data->win_ptr == NULL)
+	if (!data->win_ptr)
 		return (1);
 	t = clock();
 	render_background(&data->img, data->map.colours.background_colour, \
 		data->map.colours.menu_colour);
-	render_map(data->map.prjct, data);
+	render_map(data->map.point, data);
 	data->map.render_count += 1;
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, \
 		0, 0);
