@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:01:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/24 21:13:17 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/27 12:17:17 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ proportion towards the window size. */
 
 void	scale(t_map *map)
 {
-	double	scale_x;
-	double	scale_y;
+	float_t	scale_x;
+	float_t	scale_y;
 	t_point	*cur;
 	int		i;
 
@@ -128,10 +128,10 @@ void	scale(t_map *map)
 		if (cur->y > map->y_max)
 			map->y_max = cur->y;
 	}
-	scale_x = (((WINX - MENU_WIDTH) / 2) - FIT_MARGIN) / fmax(abs(map->x_max), \
+	scale_x = (((WINX - MENU_WIDTH) / 2) - FIT_MARGIN) / fmaxf(abs(map->x_max), \
 		abs(map->x_min));
-	scale_y = (WINY / 2 - FIT_MARGIN) / fmax(abs(map->y_max), abs(map->y_min));
-	map->point = zoom(map->point, map, fmin(scale_x, scale_y));
+	scale_y = (WINY / 2 - FIT_MARGIN) / fmaxf(abs(map->y_max), abs(map->y_min));
+	map->point = zoom(map->point, map, fminf(scale_x, scale_y));
 }
 
 /* This function creates a working copy of the original points

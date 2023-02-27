@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:30:58 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/24 21:16:01 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/27 12:30:45 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	render(t_data *data)
 	clock_t	t;
 
 	if (!data->win_ptr)
-		return (1);
+		return (-1);
 	t = clock();
 	render_background(&data->img, data->map.colours.background_colour, \
 		data->map.colours.menu_colour);
@@ -73,7 +73,7 @@ int	joder(t_data *data)
 	free(data->map.point);
 	free(data->map.prjct);
 	free(data->map.buf);
-	ft_printf("Arrivederci <3");
+	ft_printf("Arrivederci <3\n\n");
 	exit (0);
 	return (0);
 }

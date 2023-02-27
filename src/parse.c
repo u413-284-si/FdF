@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:50:16 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/17 12:23:53 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/27 12:12:51 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ void	extract_points(t_map *map, char *line, int line_pos)
 		if (!point_check(arr[i]))
 			terminate(ERR_DATA_FORMAT);
 		map->point[++point_index].x = (i - \
-			(map->limits.x / 2)) * map->space;
+			(int)(map->limits.x / 2)) * map->space;
 		map->point[point_index].y = (line_pos - \
-			(map->limits.y / 2)) * map->space;
+			(int)(map->limits.y / 2)) * map->space;
 		map->point[point_index].z = ft_atoi(arr[i]);
 		colour = colour_given(arr[i]);
 		if (colour)

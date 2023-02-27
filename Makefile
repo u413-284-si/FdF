@@ -6,7 +6,7 @@
 #    By: sqiu <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/05 10:37:52 by sqiu              #+#    #+#              #
-#    Updated: 2023/02/24 14:35:53 by sqiu             ###   ########.fr        #
+#    Updated: 2023/02/27 12:26:01 by sqiu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,13 +25,13 @@ CC 			= cc
 INCDIR		= ./inc/
 INCLIST		= fdf.h algo.h colour.h error.h events.h image.h initiate.h \
 			main.h manip.h parse.h transformation.h utils.h window.h \
-			events_bonus.h manip_bonus.h lines.h
+			events_bonus.h manip_bonus.h
 INC			= $(addprefix ${INCDIR}, ${INCLIST})
 
 SRCDIR		= ./src/
 SRCLIST		= algo.c colour.c error.c ft_atoi_base.c image.c initiate.c main.c \
 			manip.c parse.c transformation.c utils.c window.c manip_bonus.c \
-			events_bonus.c lines.c
+			events_bonus.c
 SRC			= $(addprefix ${SRCDIR}, ${SRCLIST})
 
 OBJDIR		= ./obj/

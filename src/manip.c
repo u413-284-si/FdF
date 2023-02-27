@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:35:54 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/24 15:50:41 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/27 12:18:42 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_point	vec_sub(t_point vec1, t_point vec2)
 
 /* This function multiplies the vector with a scalar. */
 
-t_point	vec_scalarmult(t_point vec, double scalar)
+t_point	vec_scalarmult(t_point vec, float_t scalar)
 {
 	t_point	rtrn;
 
@@ -57,7 +57,7 @@ t_point	vec_scalarmult(t_point vec, double scalar)
 /* This function creates the effect of zooming in/out of the picture by
 multiplying the individual vectors with a factor. */
 
-t_point	*zoom(t_point *point, t_map *map, double factor)
+t_point	*zoom(t_point *point, t_map *map, float_t factor)
 {
 	int		i;
 	t_point	*rtrn;

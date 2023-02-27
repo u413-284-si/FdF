@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:12:37 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/24 16:30:02 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/27 12:30:11 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,31 +55,31 @@ height value.*/
 void	increment(t_map *map)
 {
 	map->colours.increment_pos[0] = \
-		(double)((map->colours.top_colour >> 16) - \
-		(map->colours.zero_lv_colour >> 16)) / (double)map->limits.z;
+		(float_t)((map->colours.top_colour >> 16) - \
+		(map->colours.zero_lv_colour >> 16)) / (float_t)map->limits.z;
 	map->colours.increment_pos[1] = \
-		(double)(((map->colours.top_colour >> 8) & 0xFF) - \
+		(float_t)(((map->colours.top_colour >> 8) & 0xFF) - \
 		((map->colours.zero_lv_colour >> 8) & 0xFF)) / \
-		(double)map->limits.z;
+		(float_t)map->limits.z;
 	map->colours.increment_pos[2] = \
-		(double)((map->colours.top_colour & 0xFF) - \
-		(map->colours.zero_lv_colour & 0xFF)) / (double)map->limits.z;
+		(float_t)((map->colours.top_colour & 0xFF) - \
+		(map->colours.zero_lv_colour & 0xFF)) / (float_t)map->limits.z;
 	map->colours.increment_neg[0] = \
-		(double)((map->colours.zero_lv_colour >> 16) - \
-		(map->colours.bottom_colour >> 16)) / (double)-map->z_min;
+		(float_t)((map->colours.zero_lv_colour >> 16) - \
+		(map->colours.bottom_colour >> 16)) / (float_t)-map->z_min;
 	map->colours.increment_neg[1] = \
-		(double)(((map->colours.zero_lv_colour >> 8) & 0xFF) - \
-		((map->colours.bottom_colour >> 8) & 0xFF)) / (double)-map->z_min;
+		(float_t)(((map->colours.zero_lv_colour >> 8) & 0xFF) - \
+		((map->colours.bottom_colour >> 8) & 0xFF)) / (float_t)-map->z_min;
 	map->colours.increment_neg[2] = \
-		(double)((map->colours.zero_lv_colour & 0xFF) - \
-		(map->colours.bottom_colour & 0xFF)) / (double)-map->z_min;
+		(float_t)((map->colours.zero_lv_colour & 0xFF) - \
+		(map->colours.bottom_colour & 0xFF)) / (float_t)-map->z_min;
 }
 
 /* This function uses the calculated colour increment and applies the
 appropriate colour value to each point - via the RGB colour model - 
 according to its height value. */
 
-int	gradient(double *increment, int start_colour, int pos)
+int	gradient(float_t *increment, int start_colour, float_t pos)
 {
 	int		new[3];
 	int		new_colour;
@@ -96,21 +96,21 @@ the distance between two points and their respective colours.
 It then assigns the appropriate colour according to the position
 along that distance.*/
 
-int	gradient_interpoints(t_point start, t_point end, int pos)
+int	gradient_interpoints(t_point start, t_point end, float_t pos)
 {
 	int		distance;
-	double	increment[3];
+	float_t	increment[3];
 	int		new[3];
 	int		new_colour;
 
 	distance = roundme(sqrt(pow(end.y - start.y, 2) \
 		+ pow(end.x - start.x, 2)));
-	increment[0] = (double)((end.colour >> 16) - (start.colour >> 16)) \
-		/ (double)distance;
-	increment[1] = (double)(((end.colour >> 8) & 0xFF) - \
-		((start.colour >> 8) & 0xFF)) / (double)distance;
-	increment[2] = (double)((end.colour & 0xFF) - (start.colour & 0xFF)) \
-		/ (double)distance;
+	increment[0] = (float_t)((end.colour >> 16) - (start.colour >> 16)) \
+		/ (float_t)distance;
+	increment[1] = (float_t)(((end.colour >> 8) & 0xFF) - \
+		((start.colour >> 8) & 0xFF)) / (float_t)distance;
+	increment[2] = (float_t)((end.colour & 0xFF) - (start.colour & 0xFF)) \
+		/ (float_t)distance;
 	new[0] = (start.colour >> 16) + roundme(increment[0] * pos);
 	new[1] = ((start.colour >> 8) & 0xFF) + roundme(increment[1] * pos);
 	new[2] = (start.colour & 0xFF) + roundme(increment[2] * pos);

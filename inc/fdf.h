@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:03:00 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/24 16:40:23 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/27 12:10:11 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,15 +93,15 @@ typedef struct s_colours
 	int		bottom_colour;
 	int		background_colour;
 	int		menu_colour;
-	double	increment_pos[3];
-	double	increment_neg[3];
+	float_t	increment_pos[3];
+	float_t	increment_neg[3];
 }	t_colours;
 
 typedef struct s_point
 {
-	int		x;
-	int		y;
-	int		z;
+	float_t	x;
+	float_t	y;
+	float_t	z;
 	int		colour;
 }	t_point;
 
@@ -122,11 +122,11 @@ typedef struct s_map
 	int			z_min;
 	int			z_max;
 	int			point_count;
-	double		angle[3];
+	float_t		angle[3];
 	double		perf;
 	int			render_count;
-	double		scale;
-	double		z_scale;
+	float_t		scale;
+	float_t		z_scale;
 }	t_map;
 
 typedef struct s_data

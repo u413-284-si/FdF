@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:48:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/24 21:16:45 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/27 12:22:05 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,14 +116,14 @@ void	render_map(t_point *point, t_data *data)
 	while (++i < data->map.point_count)
 	{
 		cur = vec_add(point[i], data->map.origin);
-		if ((i + 1) % data->map.limits.x != 0)
+		if ((i + 1) % (int)data->map.limits.x != 0)
 		{
 			right = vec_add(point[i + 1], data->map.origin);
 			bham(cur, right, data);
 		}
 		if (i < data->map.point_count - data->map.limits.x)
 		{
-			below = vec_add(point[i + data->map.limits.x], \
+			below = vec_add(point[i + (int)data->map.limits.x], \
 				data->map.origin);
 			bham(cur, below, data);
 		}

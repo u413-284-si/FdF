@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:24:06 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/10 12:12:53 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/27 12:07:40 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@
 
 void	free_arr(char **arr);
 int		upper_case(char *s);
-int		roundme(double n);
+int		roundme(float_t n);
 
 #endif

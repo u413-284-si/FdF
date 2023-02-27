@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:59:14 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/24 16:28:11 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/27 11:54:08 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,28 @@
 /* This function performs a matrix multiplication of a 3D-vector with a
 3x3 matrix. */
 
-t_point	mat_mult(float matrix[3][3], t_point prjct)
+t_point	mat_mult(float_t matrix[3][3], t_point point)
 {
 	t_point	rtrn;
 
-	rtrn.x = matrix[0][0] * prjct.x + matrix[0][1] * prjct.y + \
-		matrix[0][2] * prjct.z;
-	rtrn.y = matrix[1][0] * prjct.x + matrix[1][1] * prjct.y + \
-		matrix[1][2] * prjct.z;
-	rtrn.z = matrix[2][0] * prjct.x + matrix[2][1] * prjct.y + \
-		matrix[2][2] * prjct.z;
-	rtrn.colour = prjct.colour;
+	rtrn.x = matrix[0][0] * point.x + matrix[0][1] * point.y + \
+		matrix[0][2] * point.z;
+	rtrn.y = matrix[1][0] * point.x + matrix[1][1] * point.y + \
+		matrix[1][2] * point.z;
+	rtrn.z = matrix[2][0] * point.x + matrix[2][1] * point.y + \
+		matrix[2][2] * point.z;
+	rtrn.colour = point.colour;
 	return (rtrn);
 }
 
 /* This function performs a rotation in positive direction of the given
 vectors around the x-axis by the given angle. */
 
-void	rotate_x(t_point *prjct, double angle, int point_count)
+void	rotate_x(t_point *point, float_t angle, int point_count)
 {
 	int		i;
-	double	rad;
-	float	rotate[3][3];
+	float_t	rad;
+	float_t	rotate[3][3];
 
 	rad = angle * M_PI / 180;
 	rotate[0][0] = 1;
@@ -51,17 +51,17 @@ void	rotate_x(t_point *prjct, double angle, int point_count)
 	rotate[2][2] = cos(rad);
 	i = -1;
 	while (++i < point_count)
-		prjct[i] = mat_mult(rotate, prjct[i]);
+		point[i] = mat_mult(rotate, point[i]);
 }
 
 /* This function performs a rotation in positive direction of the given
 vectors around the y-axis by the given angle. */
 
-void	rotate_y(t_point *prjct, double angle, int point_count)
+void	rotate_y(t_point *point, float_t angle, int point_count)
 {
 	int		i;
-	double	rad;
-	float	rotate[3][3];
+	float_t	rad;
+	float_t	rotate[3][3];
 
 	rad = angle * M_PI / 180;
 	rotate[0][0] = cos(rad);
@@ -75,17 +75,17 @@ void	rotate_y(t_point *prjct, double angle, int point_count)
 	rotate[2][2] = cos(rad);
 	i = -1;
 	while (++i < point_count)
-		prjct[i] = mat_mult(rotate, prjct[i]);
+		point[i] = mat_mult(rotate, point[i]);
 }
 
 /* This function performs a rotation in positive direction of the given
 vectors around the z-axis by the given angle. */
 
-void	rotate_z(t_point *prjct, double angle, int point_count)
+void	rotate_z(t_point *point, float_t angle, int point_count)
 {
 	int		i;
-	double	rad;
-	float	rotate[3][3];
+	float_t	rad;
+	float_t	rotate[3][3];
 
 	rad = angle * M_PI / 180;
 	rotate[0][0] = cos(rad);
@@ -99,17 +99,17 @@ void	rotate_z(t_point *prjct, double angle, int point_count)
 	rotate[2][2] = 1;
 	i = -1;
 	while (++i < point_count)
-		prjct[i] = mat_mult(rotate, prjct[i]);
+		point[i] = mat_mult(rotate, point[i]);
 }
 
 /* This function performs an orthographic projection - therefore
 representing a 3D object in 2D. The projection is parallel with
 all projection lines orthogonal to the projection plane. */
 
-void	orthographic_prjct(t_point *prjct, int point_count)
+void	orthographic_prjct(t_point *point, int point_count)
 {
 	int		i;
-	float	ortho[3][3];
+	float_t	ortho[3][3];
 
 	ortho[0][0] = 1;
 	ortho[0][1] = 0;
@@ -122,5 +122,5 @@ void	orthographic_prjct(t_point *prjct, int point_count)
 	ortho[2][2] = 0;
 	i = -1;
 	while (++i < point_count)
-		prjct[i] = mat_mult(ortho, prjct[i]);
+		point[i] = mat_mult(ortho, point[i]);
 }

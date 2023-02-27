@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:24:11 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/10 13:21:33 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/27 12:07:31 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	upper_case(char *s)
 /* This function rounds the floating point number n to its correct
 integer value. */
 
-int	roundme(double n)
+int	roundme(float_t n)
 {
 	int	rounded;
 
