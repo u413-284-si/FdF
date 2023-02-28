@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:03:00 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/27 12:10:11 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/28 18:10:43 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,11 @@
 # define MENU_WIDTH			350
 # define FIT_MARGIN			100
 # define ZOOM_FACTOR		1.1
-# define ISO				35.264
+# define RENDER_INFO		40
+# define MAP_INFO			280
+# define CONTROL_INFO		480
+# define LINE_HEIGHT		30
+# define LINE_START			30
 
 # define DEFAULT_COLOUR		ORANGE
 # define BOTTOM_COLOUR		BLUE
@@ -54,7 +58,7 @@
 # define ZERO_LV_COLOUR		RED
 # define BACKGROUND_COLOUR	CARBON
 # define MENU_COLOUR		LIGHT_CARBON
-# define TEXT_COLOUR		GREY
+# define TEXT_COLOUR		SAFFRON
 # define NUMBER_COLOUR		SAFFRON
 
 // Colours
@@ -111,6 +115,9 @@ typedef struct s_map
 	t_point		*prjct;
 	t_point		limits;
 	t_point		origin;
+	t_point		base_i;
+	t_point		base_j;
+	t_point		base_k;
 	t_colours	colours;
 	char		*buf;
 	char		**lines;
@@ -123,6 +130,7 @@ typedef struct s_map
 	int			z_max;
 	int			point_count;
 	float_t		angle[3];
+	float_t		cur_angle[3];
 	double		perf;
 	int			render_count;
 	float_t		scale;

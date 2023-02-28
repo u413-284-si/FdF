@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:26:52 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/27 11:43:36 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/28 16:13:21 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "../inc/window.h"
 #include "../inc/image.h"
 #include "../inc/events_bonus.h"
+#include "../inc/manip.h"
 
 int	main(int argc, char **argv)
 {

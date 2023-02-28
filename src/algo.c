@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:49:40 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/27 12:25:39 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/28 16:01:04 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,5 @@ void	set_pixel(t_bham *algo, t_data *data, t_point start, t_point end)
 	pos = roundme(sqrt(pow(cur.y - start.y, 2) + \
 		pow(cur.x - start.x, 2)));
 	cur.colour = gradient_interpoints(start, end, pos);
-	alpha_pix_put(data, cur.x, cur.y, cur.colour);
+	img_pix_put(&data->img, cur.x, cur.y, cur.colour);
 }

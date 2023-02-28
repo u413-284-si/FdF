@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:12:37 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/27 12:30:11 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/28 16:02:50 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ colour values depending on the endian
     endian = 0 --> Least significant byte first (= blue)
 */
 
-void	set_colour(char *address, int endian, int colour, int alpha)
+/* void	set_colour(char *address, int endian, int colour, int alpha)
 {
 	if (endian == 1)
 	{
@@ -140,4 +140,4 @@ void	set_colour(char *address, int endian, int colour, int alpha)
 		address[2] = (colour >> 16) & 0xFF;
 		address[3] = alpha;
 	}
-}
+} */

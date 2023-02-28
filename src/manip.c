@@ -6,12 +6,13 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:35:54 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/27 12:18:42 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/28 18:30:58 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 #include "../inc/manip.h"
+#include "../inc/transformation.h"
 
 /* This function applies a vector addition of vec2 on vec1 altering the
 values of vec1. */
@@ -60,11 +61,22 @@ multiplying the individual vectors with a factor. */
 t_point	*zoom(t_point *point, t_map *map, float_t factor)
 {
 	int		i;
-	t_point	*rtrn;
 
-	rtrn = point;
 	i = -1;
 	while (++i < map->point_count)
-		rtrn[i] = vec_scalarmult(point[i], factor);
-	return (rtrn);
+		point[i] = vec_scalarmult(point[i], factor);
+	map->scale *= factor;
+	map->base_i = vec_scalarmult(map->base_i, factor);
+	map->base_j = vec_scalarmult(map->base_j, factor);
+	map->base_k = vec_scalarmult(map->base_k, factor);
+	return (point);
+}
+
+/* This function rotates the map into the required perspective. */
+
+void	put_i_persp(t_data *data)
+{
+	rotate_z(&data->map, data->map.angle[Z], data->map.point_count);
+	rotate_x(&data->map, data->map.angle[X], data->map.point_count);
+	orthographic_prjct(&data->map, data->map.point_count);
 }

@@ -6,12 +6,13 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:01:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/27 12:17:17 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/28 18:20:12 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 #include "../inc/initiate.h"
+#include "../inc/initiate2.h"
 #include "../inc/error.h"
 #include "../inc/parse.h"
 #include "../inc/colour.h"
@@ -44,15 +45,19 @@ default values. */
 void	initiate(t_map *map)
 {
 	map->point_count = 0;
-	map->limits.x = 0;
-	map->limits.y = 0;
-	map->limits.z = 0;
+	map->limits = (t_point){0, 0, 0, 0x0};
 	map->origin.x = ((WINX - MENU_WIDTH) / 2) + MENU_WIDTH;
 	map->origin.y = WINY / 2;
 	map->origin.z = 0;
+	map->base_i = (t_point){1, 0, 0, 0x0};
+	map->base_j = (t_point){0, 1, 0, 0x0};
+	map->base_k = (t_point){0, 0, 1, 0x0};
 	map->angle[X] = atan(sqrt(2)) * 180 / M_PI;
 	map->angle[Y] = 0;
 	map->angle[Z] = 45;
+	map->cur_angle[X] = map->angle[X];
+	map->cur_angle[Y] = map->angle[Y];
+	map->cur_angle[Z] = map->angle[Z];
 	map->space = 10;
 	map->z_min = 0;
 	map->scale = 1;
@@ -108,26 +113,8 @@ void	scale(t_map *map)
 {
 	float_t	scale_x;
 	float_t	scale_y;
-	t_point	*cur;
-	int		i;
 
-	map->x_min = 0;
-	map->x_max = 0;
-	map->y_min = 0;
-	map->y_max = 0;
-	i = -1;
-	while (++i < map->point_count)
-	{
-		cur = map->point + i;
-		if (cur->x < map->x_min)
-			map->x_min = cur->x;
-		if (cur->x > map->x_max)
-			map->x_max = cur->x;
-		if (cur->y < map->y_min)
-			map->y_min = cur->y;
-		if (cur->y > map->y_max)
-			map->y_max = cur->y;
-	}
+	set_min_max(map);
 	scale_x = (((WINX - MENU_WIDTH) / 2) - FIT_MARGIN) / fmaxf(abs(map->x_max), \
 		abs(map->x_min));
 	scale_y = (WINY / 2 - FIT_MARGIN) / fmaxf(abs(map->y_max), abs(map->y_min));

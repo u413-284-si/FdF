@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:30:58 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/27 12:30:45 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/02/28 16:11:15 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	render(t_data *data)
 	data->map.render_count += 1;
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, \
 		0, 0);
+	render_menu(data);
 	t = clock() - t;
 	data->map.perf = (double)t / CLOCKS_PER_SEC;
 	return (0);
