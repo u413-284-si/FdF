@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:03:00 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/28 18:10:43 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/03/01 00:31:46 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 # define ZOOM_FACTOR		1.1
 # define RENDER_INFO		40
 # define MAP_INFO			280
-# define CONTROL_INFO		480
+# define CONTROL_INFO		540
 # define LINE_HEIGHT		30
 # define LINE_START			30
 

@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:30:58 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/28 16:11:15 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/03/01 00:24:10 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	joder(t_data *data)
 	free(data->map.point);
 	free(data->map.prjct);
 	free(data->map.buf);
-	ft_printf("Arrivederci <3\n\n");
+	ft_printf("\nArrivederci <3\n\n");
 	exit (0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:26:52 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/28 16:13:21 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/03/01 00:30:31 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main(int argc, char **argv)
 	put_i_persp(&data);
 	if (load_gui(&data) < 0)
 		terminate(ERR_MLX);
+	ft_printf("\nInitiating rendering.\n");
 	mlx_loop_hook(data.mlx_ptr, render, &data);
 	mlx_hook(data.win_ptr, DestroyNotify, 0, joder, &data);
 	mlx_hook(data.win_ptr, KeyPress, 1, handle_keypress, &data);
