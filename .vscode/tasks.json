@@ -10,7 +10,7 @@
                 "${file}",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}",
-                "./maps/42.fdf"
+                "./maps/elem-col.fdf"
             ],
             "options": {
                 "cwd": "${fileDirname}"

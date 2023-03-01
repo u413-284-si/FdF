@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:50:16 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/27 12:12:51 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/03/01 17:18:58 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	extract_points(t_map *map, char *line, int line_pos)
 
 	arr = ft_split(line, ' ');
 	i = -1;
+	colour = 0;
 	while (arr[++i] && arr[i][0] != '\n')
 	{
 		if (!point_check(arr[i]))

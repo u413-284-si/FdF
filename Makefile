@@ -6,7 +6,7 @@
 #    By: sqiu <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/05 10:37:52 by sqiu              #+#    #+#              #
-#    Updated: 2023/03/01 14:28:50 by sqiu             ###   ########.fr        #
+#    Updated: 2023/03/01 15:09:46 by sqiu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,7 @@ valgr:
 						--show-leak-kinds=all\
 						--verbose\
 						--log-file=valgrind-out.txt\
-						./fdf ./maps/42.fdf
+						./fdf ./maps/mumu.fdf
 				@less ./valgrind-out.txt
 
 .PHONY: 		all clean fclean re
