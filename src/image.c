@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:48:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/28 17:45:50 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/03/01 14:12:40 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,20 +90,18 @@ void	render_menu(t_data *data)
 	put_str(data, LINE_START, y + 2 * LINE_HEIGHT, "Performance [ms]:");
 	put_nbr(data, LINE_START + 110, y + 2 * LINE_HEIGHT, data->map.perf * 1000);
 	put_str(data, LINE_START, y + 3 * LINE_HEIGHT, "Angle position:");
-	put_str(data, LINE_START, y + 4 * LINE_HEIGHT, "X Y: [     ] [     ]");
-	put_nbr(data, LINE_START + 40, y + 4 * LINE_HEIGHT, data->map.cur_angle[X]);
-	put_nbr(data, LINE_START + 90, y + 4 * LINE_HEIGHT, data->map.cur_angle[Y]);
-	put_str(data, LINE_START, y + 5 * LINE_HEIGHT, "Zoom:");
-	put_nbr(data, LINE_START + 40, y + 5 * LINE_HEIGHT, data->map.scale);
+	put_str(data, LINE_START, y + 4 * LINE_HEIGHT, "X: [     ]");
+	put_str(data, LINE_START, y + 5 * LINE_HEIGHT, "Y: [     ]");
+	put_str(data, LINE_START, y + 6 * LINE_HEIGHT, "Z: [     ]");
+	put_nbr(data, LINE_START + 30, y + 4 * LINE_HEIGHT, data->map.cur_angle[X]);
+	put_nbr(data, LINE_START + 30, y + 5 * LINE_HEIGHT, data->map.cur_angle[Y]);
+	put_nbr(data, LINE_START + 30, y + 6 * LINE_HEIGHT, data->map.cur_angle[Z]);
+	put_str(data, LINE_START, y + 7 * LINE_HEIGHT, "Zoom:");
+	put_nbr(data, LINE_START + 40, y + 7 * LINE_HEIGHT, data->map.cur_scale);
 	y = MAP_INFO;
 	put_str(data, LINE_START, y, ">>> MAP DATA <<<");
 	put_str(data, LINE_START, y + LINE_HEIGHT, "Amount of points:");
 	put_nbr(data, LINE_START + 110, y + LINE_HEIGHT, data->map.point_count);
-	put_str(data, LINE_START, y + 2 * LINE_HEIGHT, "X_max:");
-	put_nbr(data, LINE_START + 50, y + 2 * LINE_HEIGHT, data->map.limits.x);
-	put_str(data, LINE_START, y + 3 * LINE_HEIGHT, "Y_max:");
-	put_nbr(data, LINE_START + 50, y + 3 * LINE_HEIGHT, data->map.limits.y);
-	put_str(data, LINE_START, y + 4 * LINE_HEIGHT, "Z_max:");
 	render_menu2(data, y);
 }
 
@@ -111,6 +109,11 @@ void	render_menu(t_data *data)
 
 void	render_menu2(t_data *data, int y)
 {
+	put_str(data, LINE_START, y + 2 * LINE_HEIGHT, "X_max:");
+	put_nbr(data, LINE_START + 50, y + 2 * LINE_HEIGHT, data->map.limits.x);
+	put_str(data, LINE_START, y + 3 * LINE_HEIGHT, "Y_max:");
+	put_nbr(data, LINE_START + 50, y + 3 * LINE_HEIGHT, data->map.limits.y);
+	put_str(data, LINE_START, y + 4 * LINE_HEIGHT, "Z_max:");
 	put_nbr(data, LINE_START + 50, y + 4 * LINE_HEIGHT, data->map.limits.z);
 	put_str(data, LINE_START, y + 5 * LINE_HEIGHT, "Z_min:");
 	put_nbr(data, LINE_START + 50, y + 5 * LINE_HEIGHT, data->map.z_min);

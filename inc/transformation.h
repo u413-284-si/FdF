@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:59:26 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/28 18:39:10 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/03/01 12:32:24 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 ====== FUNCTIONS ======
  */
 
-t_point	mat_mult(float_t matrix[3][3], t_point prjct);
-void	rotate_x(t_map *map, float_t angle, int point_count);
-void	rotate_y(t_map *map, float_t angle, int point_count);
-void	rotate_z(t_map *map, float_t angle, int point_count);
-void	orthographic_prjct(t_map *map, int point_count);
+t_point	mat_mult(t_mat matrix, t_point prjct);
+void	rotate_x(t_data *data, float_t angle);
+void	rotate_y(t_data *data, float_t angle);
+void	rotate_z(t_data *data, float_t angle);
+void	orthographic_prjct(t_data *data);
 
 #endif

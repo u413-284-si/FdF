@@ -6,7 +6,7 @@
 #    By: sqiu <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/05 10:37:52 by sqiu              #+#    #+#              #
-#    Updated: 2023/02/28 18:23:14 by sqiu             ###   ########.fr        #
+#    Updated: 2023/03/01 14:28:50 by sqiu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,14 +24,14 @@ CC 			= cc
 
 INCDIR		= ./inc/
 INCLIST		= fdf.h algo.h colour.h error.h events.h image.h initiate.h \
-			initiate2.h main.h manip.h parse.h transformation.h utils.h \
-			window.h events_bonus.h manip_bonus.h
+			initiate2.h main.h manip.h manip2.h parse.h transformation.h \
+			utils.h window.h events_bonus.h manip_bonus.h
 INC			= $(addprefix ${INCDIR}, ${INCLIST})
 
 SRCDIR		= ./src/
 SRCLIST		= algo.c colour.c error.c ft_atoi_base.c image.c initiate.c \
-			initiate2.c main.c manip.c parse.c transformation.c utils.c \
-			window.c manip_bonus.c events_bonus.c
+			initiate2.c main.c manip.c manip2.c parse.c transformation.c \
+			utils.c window.c manip_bonus.c events_bonus.c
 SRC			= $(addprefix ${SRCDIR}, ${SRCLIST})
 
 OBJDIR		= ./obj/
@@ -77,5 +77,13 @@ fclean: 		clean
 				@echo "$(CYAN)executable & object files cleaned!$(DEF_COLOUR)"
 
 re: 			fclean all
+
+valgr:			
+				@valgrind --leak-check=full\
+						--show-leak-kinds=all\
+						--verbose\
+						--log-file=valgrind-out.txt\
+						./fdf ./maps/42.fdf
+				@less ./valgrind-out.txt
 
 .PHONY: 		all clean fclean re

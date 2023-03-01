@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:26:52 by sqiu              #+#    #+#             */
-/*   Updated: 2023/03/01 00:30:31 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/03/01 12:50:30 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int argc, char **argv)
 		terminate(ERR_ARGC);
 	system_boot(&data.map, argv[1]);
 	put_i_persp(&data);
+	scale(&data.map);
 	if (load_gui(&data) < 0)
 		terminate(ERR_MLX);
 	ft_printf("\nInitiating rendering.\n");

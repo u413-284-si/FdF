@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:01:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/28 18:20:12 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/03/01 14:00:54 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	system_boot(t_map *map, char *file)
 	int		fd;
 
 	initiate(map);
+	map->initial = 1;
+	map->cur_scale = map->scale;
 	fd = open(file, O_RDONLY);
 	if (fd < 3)
 		terminate(ERR_OPEN);
@@ -34,7 +36,6 @@ void	system_boot(t_map *map, char *file)
 	map_dim(map);
 	extract_lines(map);
 	colour(map);
-	scale(map);
 	copy(map);
 	ft_printf("\nMap reading terminated.\n");
 }
@@ -118,7 +119,8 @@ void	scale(t_map *map)
 	scale_x = (((WINX - MENU_WIDTH) / 2) - FIT_MARGIN) / fmaxf(abs(map->x_max), \
 		abs(map->x_min));
 	scale_y = (WINY / 2 - FIT_MARGIN) / fmaxf(abs(map->y_max), abs(map->y_min));
-	map->point = zoom(map->point, map, fminf(scale_x, scale_y));
+	map->scale = fminf(scale_x, scale_y);
+	map->point = zoom(map->point, map, map->scale);
 }
 
 /* This function creates a working copy of the original points
