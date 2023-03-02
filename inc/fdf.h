@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:03:00 by sqiu              #+#    #+#             */
-/*   Updated: 2023/03/02 11:05:35 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/03/02 15:24:26 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@
 # define FIT_MARGIN			100
 # define ZOOM_FACTOR		1.1
 # define RENDER_INFO		40
-# define MAP_INFO			340
-# define CONTROL_INFO		580
+# define MAP_INFO			400
+# define CONTROL_INFO		680
 # define LINE_HEIGHT		30
 # define LINE_START			30
 
@@ -132,6 +132,7 @@ typedef struct s_map
 	t_point		base_j;
 	t_point		base_k;
 	t_colours	colours;
+	char		*title;
 	char		*buf;
 	char		**lines;
 	int			space;

@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:26:52 by sqiu              #+#    #+#             */
-/*   Updated: 2023/03/02 16:02:03 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/03/02 15:25:11 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "../inc/initiate.h"
 #include "../inc/window.h"
 #include "../inc/image.h"
-#include "../inc/events.h"
+#include "../inc/events_bonus.h"
 #include "../inc/manip.h"
 
 int	main(int argc, char **argv)
@@ -34,6 +34,7 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(data.mlx_ptr, render, &data);
 	mlx_hook(data.win_ptr, DestroyNotify, 0, joder, &data);
 	mlx_hook(data.win_ptr, KeyPress, 1, handle_keypress, &data);
+	mlx_do_key_autorepeaton(data.mlx_ptr);
 	mlx_loop(data.mlx_ptr);
 	return (0);
 }

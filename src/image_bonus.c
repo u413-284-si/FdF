@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image.c                                            :+:      :+:    :+:   */
+/*   image_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:48:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/03/02 16:45:28 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/03/02 16:45:17 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,17 @@ void	render_menu2(t_data *data, int y)
 	put_nbr(data, LINE_START + 50, y + 5 * LINE_HEIGHT, data->map.limits.z);
 	put_str(data, LINE_START, y + 6 * LINE_HEIGHT, "Z_min:");
 	put_nbr(data, LINE_START + 50, y + 6 * LINE_HEIGHT, data->map.z_min);
+	y = CONTROL_INFO;
+	put_str(data, LINE_START, y, ">>> CONTROLS <<<");
+	put_str(data, LINE_START, y + LINE_HEIGHT, "Zoom: +/-");
+	put_str(data, LINE_START, y + 2 * LINE_HEIGHT, "Rotate:");
+	put_str(data, LINE_START + 10, y + 3 * LINE_HEIGHT, "X-axis: W/S");
+	put_str(data, LINE_START + 10, y + 4 * LINE_HEIGHT, "Y-axis: A/D");
+	put_str(data, LINE_START + 10, y + 5 * LINE_HEIGHT, "Z-axis: Y/X");
+	put_str(data, LINE_START, y + 6 * LINE_HEIGHT, "Move: Arrow keys");
+	put_str(data, LINE_START, y + 7 * LINE_HEIGHT, "Scale z-value: Q/E");
+	put_str(data, LINE_START, y + 8 * LINE_HEIGHT, "Reset: R");
+	put_str(data, LINE_START, y + 9 * LINE_HEIGHT, "Top view: T");
 }
 
 /* This function executes the attribution of a given colour to the specified

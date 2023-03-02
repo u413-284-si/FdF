@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:50:16 by sqiu              #+#    #+#             */
-/*   Updated: 2023/03/02 10:52:26 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/03/02 15:13:55 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,20 @@ it in a map->buf. */
 void	read_file(t_map *map, int fd)
 {
 	char	*buffer;
+	char	*tmp;
 
-	map->buf = ft_strdup("");
+	tmp = ft_strdup("");
 	buffer = ft_strdup("");
 	while (buffer != NULL)
 	{
 		free(buffer);
 		buffer = get_next_line(fd);
 		if (buffer)
-			map->buf = ft_strjoin(map->buf, buffer);
+		{
+			map->buf = ft_strjoin(tmp, buffer);
+			free(tmp);
+			tmp = map->buf;
+		}
 	}
 }
 
