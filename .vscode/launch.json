@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "/nfs/homes/sqiu/my_github/core_okt_2022/rank02/FdF/fdf",
-            "args": ["./maps/t1.fdf"],
+            "args": ["./maps/pyramide.fdf"],
             "stopAtEntry": false,
             "cwd": "/nfs/homes/sqiu/my_github/core_okt_2022/rank02/FdF",
             "environment": [],

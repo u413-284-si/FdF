@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:24:08 by sqiu              #+#    #+#             */
-/*   Updated: 2023/03/01 13:47:12 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/03/02 11:18:30 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,10 @@ void	scale_z(t_data *data, float_t increment)
 		data->map.base_i.y, data->map.base_j.y, data->map.base_k.y, \
 		data->map.base_i.z, data->map.base_j.z, data->map.base_k.z};
 	incr = (t_mat){1, 0, 0, 0, 1, 0, 0, 0, increment};
-	reset(data);
+	if (data->map.initial == 0)
+		reset(data);
+	transf(data, incr);
 	i = -1;
-	while (++i < data->map.point_count)
-		data->map.point[i] = mat_mult(incr, data->map.point[i]);
-	data->map.base_i = mat_mult(incr, data->map.base_i);
-	data->map.base_j = mat_mult(incr, data->map.base_j);
-	data->map.base_k = mat_mult(incr, data->map.base_k);
-	i = -1;
-	while (++i < data->map.point_count)
-		data->map.point[i] = mat_mult(cur, data->map.point[i]);
-	data->map.base_i = mat_mult(cur, data->map.base_i);
-	data->map.base_j = mat_mult(cur, data->map.base_j);
-	data->map.base_k = mat_mult(cur, data->map.base_k);
+	if (data->map.initial == 0)
+		transf(data, cur);
 }

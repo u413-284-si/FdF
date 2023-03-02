@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:03:00 by sqiu              #+#    #+#             */
-/*   Updated: 2023/03/01 14:13:39 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/03/02 11:05:35 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@
 
 # define DEFAULT_COLOUR		ORANGE
 # define BOTTOM_COLOUR		BLUE
-# define TOP_COLOUR			BRICK_RED
-# define ZERO_LV_COLOUR		RED
+# define TOP_COLOUR			GREEN
+# define ZERO_LV_COLOUR		DISCO
 # define BACKGROUND_COLOUR	CARBON
 # define MENU_COLOUR		LIGHT_CARBON
 # define TEXT_COLOUR		SAFFRON

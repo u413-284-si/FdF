@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:48:12 by sqiu              #+#    #+#             */
-/*   Updated: 2023/03/01 14:12:40 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/03/02 14:31:10 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,24 @@ The given points are shifted to the origin of the map to be rendered.
 void	render_map(t_point *point, t_data *data)
 {
 	int		i;
+	int		last_row;
 	t_point	cur;
 	t_point	right;
 	t_point	below;
 
+	if (data->map.limits.y > data->map.limits.x)
+		last_row = 2 * data->map.limits.x;
+	else
+		last_row = data->map.limits.x;
 	i = -1;
 	while (++i < data->map.point_count)
 	{
 		cur = vec_add(point[i], data->map.origin);
 		if ((i + 1) % (int)data->map.limits.x != 0)
-		{
 			right = vec_add(point[i + 1], data->map.origin);
+		if ((i + 1) % (int)data->map.limits.x != 0)
 			bham(cur, right, data);
-		}
-		if (i < data->map.point_count - data->map.limits.x)
+		if (i < data->map.point_count - last_row)
 		{
 			below = vec_add(point[i + (int)data->map.limits.x], \
 				data->map.origin);
@@ -90,12 +94,12 @@ void	render_menu(t_data *data)
 	put_str(data, LINE_START, y + 2 * LINE_HEIGHT, "Performance [ms]:");
 	put_nbr(data, LINE_START + 110, y + 2 * LINE_HEIGHT, data->map.perf * 1000);
 	put_str(data, LINE_START, y + 3 * LINE_HEIGHT, "Angle position:");
-	put_str(data, LINE_START, y + 4 * LINE_HEIGHT, "X: [     ]");
-	put_str(data, LINE_START, y + 5 * LINE_HEIGHT, "Y: [     ]");
-	put_str(data, LINE_START, y + 6 * LINE_HEIGHT, "Z: [     ]");
-	put_nbr(data, LINE_START + 30, y + 4 * LINE_HEIGHT, data->map.cur_angle[X]);
-	put_nbr(data, LINE_START + 30, y + 5 * LINE_HEIGHT, data->map.cur_angle[Y]);
-	put_nbr(data, LINE_START + 30, y + 6 * LINE_HEIGHT, data->map.cur_angle[Z]);
+	put_str(data, LINE_START + 10, y + 4 * LINE_HEIGHT, "X: [     ]");
+	put_str(data, LINE_START + 10, y + 5 * LINE_HEIGHT, "Y: [     ]");
+	put_str(data, LINE_START + 10, y + 6 * LINE_HEIGHT, "Z: [     ]");
+	put_nbr(data, LINE_START + 40, y + 4 * LINE_HEIGHT, data->map.cur_angle[X]);
+	put_nbr(data, LINE_START + 40, y + 5 * LINE_HEIGHT, data->map.cur_angle[Y]);
+	put_nbr(data, LINE_START + 40, y + 6 * LINE_HEIGHT, data->map.cur_angle[Z]);
 	put_str(data, LINE_START, y + 7 * LINE_HEIGHT, "Zoom:");
 	put_nbr(data, LINE_START + 40, y + 7 * LINE_HEIGHT, data->map.cur_scale);
 	y = MAP_INFO;
@@ -120,11 +124,14 @@ void	render_menu2(t_data *data, int y)
 	y = CONTROL_INFO;
 	put_str(data, LINE_START, y, ">>> CONTROLS <<<");
 	put_str(data, LINE_START, y + LINE_HEIGHT, "Zoom: +/-");
-	put_str(data, LINE_START, y + 2 * LINE_HEIGHT, "Rotate: WASD");
-	put_str(data, LINE_START, y + 3 * LINE_HEIGHT, "Move: Arrow keys");
-	put_str(data, LINE_START, y + 4 * LINE_HEIGHT, "Scale z-value: Q/E");
-	put_str(data, LINE_START, y + 5 * LINE_HEIGHT, "Reset: R");
-	put_str(data, LINE_START, y + 6 * LINE_HEIGHT, "Top view: T");
+	put_str(data, LINE_START, y + 2 * LINE_HEIGHT, "Rotate:");
+	put_str(data, LINE_START + 10, y + 3 * LINE_HEIGHT, "X-axis: W/S");
+	put_str(data, LINE_START + 10, y + 4 * LINE_HEIGHT, "Y-axis: A/D");
+	put_str(data, LINE_START + 10, y + 5 * LINE_HEIGHT, "Z-axis: Y/X");
+	put_str(data, LINE_START, y + 6 * LINE_HEIGHT, "Move: Arrow keys");
+	put_str(data, LINE_START, y + 7 * LINE_HEIGHT, "Scale z-value: Q/E");
+	put_str(data, LINE_START, y + 8 * LINE_HEIGHT, "Reset: R");
+	put_str(data, LINE_START, y + 9 * LINE_HEIGHT, "Top view: T");
 }
 
 /* This function executes the attribution of a given colour to the specified

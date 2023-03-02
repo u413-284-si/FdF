@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:50:16 by sqiu              #+#    #+#             */
-/*   Updated: 2023/03/01 17:18:58 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/03/02 10:52:26 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	extract_points(t_map *map, char *line, int line_pos)
 			(int)(map->limits.y / 2)) * map->space;
 		map->point[point_index].z = ft_atoi(arr[i]);
 		colour = colour_given(arr[i]);
-		if (colour)
+		if (colour != 0)
 			map->point[point_index].colour = colour;
 		else
 			map->point[point_index].colour = DEFAULT_COLOUR;
@@ -107,16 +107,17 @@ colour is returned as an int, else 0 is returned. */
 int	colour_given(char *s)
 {
 	int	colour;
+	int	i;
 
 	if (ft_strchr(s, ','))
 	{
 		while (*s != ',')
 			s++;
 		s += 3;
-		if (upper_case(s))
-			colour = ft_atoi_base(s, "0123456789ABCDEF");
-		else
-			colour = ft_atoi_base(s, "0123456789abcdef");
+		i = -1;
+		while (s[++i])
+			s[i] = ft_tolower(s[i]);
+		colour = ft_atoi_base(s, "0123456789abcdef");
 		return (colour);
 	}
 	else
