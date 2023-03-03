@@ -4,6 +4,8 @@ This project is about representing a map/landscape as a 3D object in which all s
 
 https://user-images.githubusercontent.com/66411482/222748303-cccb3f8d-b2f4-4948-a9fb-d4a9a43c2b1d.mp4
 
+
+
 ![france](img/france.png)
 
 ## Project Overview
@@ -49,6 +51,28 @@ make bonus
 ```
 
 Enjoy!
+
+## Showcase
+
+### La douce France
+
+![france](img/france_top.png)
+
+### La douce France plus proche
+
+![france](img/france_detail.png)
+
+### 最高の人生
+
+![france](img/japan.png)
+
+### Julia set
+
+![france](img/julia.png)
+
+### More fractal
+
+![france](img/fract.png)
 
 ## Contact & contribute
 To contact me and for feedback in order to fix bugs/improve the project you may write me a message to **sqiu@student.42vienna.com**.
