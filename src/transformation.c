@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:59:14 by sqiu              #+#    #+#             */
-/*   Updated: 2023/03/01 13:36:32 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/03/03 09:52:54 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_point	mat_mult(t_mat matrix, t_point point)
 	rtrn.z = matrix.r2c0 * point.x + matrix.r2c1 * point.y + \
 		matrix.r2c2 * point.z;
 	rtrn.colour = point.colour;
+	rtrn.hex_given = point.hex_given;
 	return (rtrn);
 }
 

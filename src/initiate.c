@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:01:17 by sqiu              #+#    #+#             */
-/*   Updated: 2023/03/01 14:00:54 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/03/03 09:51:29 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ default values. */
 void	initiate(t_map *map)
 {
 	map->point_count = 0;
-	map->limits = (t_point){0, 0, 0, 0x0};
+	map->limits = (t_point){0, 0, 0, 0x0, 0};
 	map->origin.x = ((WINX - MENU_WIDTH) / 2) + MENU_WIDTH;
 	map->origin.y = WINY / 2;
 	map->origin.z = 0;
-	map->base_i = (t_point){1, 0, 0, 0x0};
-	map->base_j = (t_point){0, 1, 0, 0x0};
-	map->base_k = (t_point){0, 0, 1, 0x0};
+	map->base_i = (t_point){1, 0, 0, 0x0, 0};
+	map->base_j = (t_point){0, 1, 0, 0x0, 0};
+	map->base_k = (t_point){0, 0, 1, 0x0, 0};
 	map->angle[X] = atan(sqrt(2)) * 180 / M_PI;
 	map->angle[Y] = 0;
 	map->angle[Z] = 45;

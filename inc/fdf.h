@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:03:00 by sqiu              #+#    #+#             */
-/*   Updated: 2023/03/02 15:24:26 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/03/03 09:36:36 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,9 @@
 # define ORANGE				0xEF8633
 # define SAFFRON			0xF3AF3D
 # define GREY				0xEAEAEA
+# define LIGHT_GREY			0xF7FAFA
+# define YELLOW				0xFFE900
+# define TURQUOISE			0x40E0D0
 
 /* 
 		====== STRUCTS ======
@@ -107,6 +110,7 @@ typedef struct s_point
 	float_t	y;
 	float_t	z;
 	int		colour;
+	bool	hex_given;
 }	t_point;
 
 typedef struct s_mat

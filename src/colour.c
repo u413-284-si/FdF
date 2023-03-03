@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 15:12:37 by sqiu              #+#    #+#             */
-/*   Updated: 2023/02/28 16:02:50 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/03/03 10:07:15 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	colour(t_map *map)
 	increment(map);
 	while (++point_index < map->point_count)
 	{
-		if (map->point[point_index].colour == DEFAULT_COLOUR)
+		if (map->point[point_index].hex_given == 0)
 		{
 			if (map->point[point_index].z == map->limits.z)
 				map->point[point_index].colour = map->colours.top_colour;
@@ -35,13 +35,11 @@ void	colour(t_map *map)
 			else if (map->point[point_index].z > 0)
 				map->point[point_index].colour = \
 				gradient(map->colours.increment_pos, \
-				map->colours.zero_lv_colour, \
-				map->point[point_index].z);
+				map->colours.zero_lv_colour, map->point[point_index].z);
 			else
 				map->point[point_index].colour = \
 				gradient(map->colours.increment_neg, \
-				map->colours.bottom_colour, \
-				-map->point[point_index].z);
+				map->colours.bottom_colour, -map->point[point_index].z);
 		}
 	}
 }
@@ -116,6 +114,32 @@ int	gradient_interpoints(t_point start, t_point end, float_t pos)
 	new[2] = (start.colour & 0xFF) + roundme(increment[2] * pos);
 	new_colour = (new[0] << 16) + (new[1] << 8) + new[2];
 	return (new_colour);
+}
+
+/* This function verifies whether information on the colour is given in
+the string. In this instance it follows a specific format
+of colour data being separated by the z-value by a ',' with a
+leading 0x and representation in hexadecimal form. If given, the
+colour is returned as an int, else 0 is returned. */
+
+int	colour_given(char *s)
+{
+	int	colour;
+	int	i;
+
+	if (ft_strchr(s, ','))
+	{
+		while (*s != ',')
+			s++;
+		s += 3;
+		i = -1;
+		while (s[++i])
+			s[i] = ft_tolower(s[i]);
+		colour = ft_atoi_base(s, "0123456789abcdef");
+		return (colour);
+	}
+	else
+		return (0);
 }
 
 /* This function fills the 4 bytes of the given address with the given

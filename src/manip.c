@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:35:54 by sqiu              #+#    #+#             */
-/*   Updated: 2023/03/01 13:59:55 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/03/03 09:53:56 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_point	vec_add(t_point vec1, t_point vec2)
 	rtrn.y = vec1.y + vec2.y;
 	rtrn.z = vec1.z + vec2.z;
 	rtrn.colour = vec1.colour;
+	rtrn.hex_given = vec1.hex_given;
 	return (rtrn);
 }
 
@@ -39,6 +40,7 @@ t_point	vec_sub(t_point vec1, t_point vec2)
 	rtrn.y = vec1.y - vec2.y;
 	rtrn.z = vec1.z - vec2.z;
 	rtrn.colour = vec1.colour;
+	rtrn.hex_given = vec1.hex_given;
 	return (rtrn);
 }
 
@@ -52,6 +54,7 @@ t_point	vec_scalarmult(t_point vec, float_t scalar)
 	rtrn.y = vec.y * scalar;
 	rtrn.z = vec.z * scalar;
 	rtrn.colour = vec.colour;
+	rtrn.hex_given = vec.hex_given;
 	return (rtrn);
 }
 

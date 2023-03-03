@@ -6,7 +6,7 @@
 /*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:07:08 by sqiu              #+#    #+#             */
-/*   Updated: 2023/03/02 11:11:39 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/03/03 10:38:33 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "../inc/transformation.h"
 #include "../inc/window.h"
 #include "../inc/initiate.h"
+#include "../inc/colour.h"
 
 /* This function handles all keypress events assigning individual actions
 to each key being pressed. */
@@ -31,13 +32,13 @@ int	handle_keypress(int keysym, t_data *data)
 	if (keysym == XK_minus)
 		zoom(data->map.point, &data->map, 1 / ZOOM_FACTOR);
 	if (keysym == XK_Left)
-		shift(&data->map, (t_point){-10, 0, 0, 0x0});
+		shift(&data->map, (t_point){-10, 0, 0, 0x0, 0});
 	if (keysym == XK_Right)
-		shift(&data->map, (t_point){10, 0, 0, 0x0});
+		shift(&data->map, (t_point){10, 0, 0, 0x0, 0});
 	if (keysym == XK_Up)
-		shift(&data->map, (t_point){0, -10, 0, 0x0});
+		shift(&data->map, (t_point){0, -10, 0, 0x0, 0});
 	if (keysym == XK_Down)
-		shift(&data->map, (t_point){0, 10, 0, 0x0});
+		shift(&data->map, (t_point){0, 10, 0, 0x0, 0});
 	if (keysym == XK_w)
 	{
 		rotate_x(data, 5);
@@ -121,6 +122,34 @@ int	handle_keypress4(int keysym, t_data *data)
 	{
 		rotate_z(data, 5);
 		data->map.cur_angle[Z] += 5;
+	}
+	if (keysym == XK_1)
+	{
+		data->map.colours.background_colour = CARBON;
+		data->map.colours.menu_colour = LIGHT_CARBON;
+		data->map.colours.bottom_colour = BLUE;
+		data->map.colours.zero_lv_colour = DISCO;
+		data->map.colours.top_colour = GREEN;
+		colour(&data->map);
+	}
+	else
+		handle_keypress5(keysym, data);
+	return (0);
+}
+
+/* This function is the continuation of handling all keypress
+events assigning individual actions to each key being pressed. */
+
+int	handle_keypress5(int keysym, t_data *data)
+{
+	if (keysym == XK_2)
+	{
+		data->map.colours.background_colour = LIGHT_GREY;
+		data->map.colours.menu_colour = GREY;
+		data->map.colours.bottom_colour = TURQUOISE;
+		data->map.colours.zero_lv_colour = YELLOW;
+		data->map.colours.top_colour = BRICK_RED;
+		colour(&data->map);
 	}
 	return (0);
 }
