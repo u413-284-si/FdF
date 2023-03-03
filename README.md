@@ -1,7 +1,7 @@
 # FdF
 
 ## Project Overview
-This project is about representing a map/landscape as a 3D object in which all surfaces are outlined in lines using “iron wire” meshing.
+This project is about representing a map/landscape as a 3D object in which all surfaces are outlined in lines using “iron wire” meshing (therefore the name 'fil de fer' = iron wire).
 
 The goal of this project is to familiarise with
 * input handling
@@ -29,14 +29,19 @@ The line drawing algorithm used is Bresenhams algorithm.
 
 ## Installation
 
+```
 git clone git@github.com:u413-284-si/FdF.git fdf
 cd fdf
 make
 ./fdf ./maps/<choose a map>
+```
 
 For bonus program (while within the fdf directory):
+
+```
 make bonus
 ./super_fdf ./maps/<choose a map>
+```
 
 Enjoy!
 
