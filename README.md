@@ -1,19 +1,10 @@
 # FdF
 
-
-
-
+This project is about representing a map/landscape as a 3D object in which all surfaces are outlined in lines using “iron wire” meshing (therefore the name 'fil de fer' = iron wire).
 
 https://user-images.githubusercontent.com/66411482/222748303-cccb3f8d-b2f4-4948-a9fb-d4a9a43c2b1d.mp4
 
-
-
-
-
-
-
 ## Project Overview
-This project is about representing a map/landscape as a 3D object in which all surfaces are outlined in lines using “iron wire” meshing (therefore the name 'fil de fer' = iron wire).
 
 The goal of this project is to familiarise with
 * input handling
