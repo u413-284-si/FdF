@@ -4,6 +4,8 @@ This project is about representing a map/landscape as a 3D object in which all s
 
 https://user-images.githubusercontent.com/66411482/222748303-cccb3f8d-b2f4-4948-a9fb-d4a9a43c2b1d.mp4
 
+![france](img/france.png)
+
 ## Project Overview
 
 The goal of this project is to familiarise with
