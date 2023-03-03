@@ -41,4 +41,4 @@ make bonus
 Enjoy!
 
 ## Contact & contribute
-To contact me and for feedback in order to fix bugs/improve the project you may write me a message to **sqiu at student dot 42 dot com**.
+To contact me and for feedback in order to fix bugs/improve the project you may write me a message to **sqiu@student.42vienna.com**.
