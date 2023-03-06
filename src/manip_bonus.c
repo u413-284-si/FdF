@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manip_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqiu <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:24:08 by sqiu              #+#    #+#             */
-/*   Updated: 2023/03/02 11:18:30 by sqiu             ###   ########.fr       */
+/*   Updated: 2023/03/06 10:56:20 by sqiu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	shift(t_map *map, t_point offset)
 
 void	scale_z(t_data *data, float_t increment)
 {
-	int		i;
 	t_mat	cur;
 	t_mat	incr;
 
@@ -44,7 +43,6 @@ void	scale_z(t_data *data, float_t increment)
 	if (data->map.initial == 0)
 		reset(data);
 	transf(data, incr);
-	i = -1;
 	if (data->map.initial == 0)
 		transf(data, cur);
 }
