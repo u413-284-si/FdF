@@ -10,7 +10,7 @@ https://user-images.githubusercontent.com/66411482/222748303-cccb3f8d-b2f4-4948-
 
 ## Project Overview
 
-The goal of this project is to familiarise with
+The goal of this project is to familiarise oneself with
 * input handling
 * 3D rendering
 * colour representation with the RGB hexcolour scheme
