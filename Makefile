@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sqiu <marvin@42.fr>                        +#+  +:+       +#+         #
+#    By: sqiu <sqiu@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/05 10:37:52 by sqiu              #+#    #+#              #
-#    Updated: 2023/03/02 16:38:57 by sqiu             ###   ########.fr        #
+#    Updated: 2023/03/31 18:54:28 by sqiu             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,15 +70,15 @@ bonus:			$(BONUSNAME)
 
 $(NAME):		$(OBJDIR) $(OBJ)
 				@echo "\n$(YELLOW)Compiling: $@ $(DEF_COLOUR)"
-				@$(MAKE) all -C ./libft
-				@$(MAKE) all -C ./mlx_linux
+				@$(MAKE) all --no-print-directory -C ./libft
+				@$(MAKE) all --no-print-directory -C ./mlx_linux
 				@$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS) $(CPPFLAGS) -o $@
 				@echo "\n$(GREEN)$@ compiled!$(DEF_COLOUR)"
 
 $(BONUSNAME):	$(OBJDIR) $(OBJ_B)
 				@echo "\n$(YELLOW)Compiling: $@ $(DEF_COLOUR)"
-				@$(MAKE) all -C ./libft
-				@$(MAKE) all -C ./mlx_linux
+				@$(MAKE) all --no-print-directory -C ./libft
+				@$(MAKE) all --no-print-directory -C ./mlx_linux
 				@$(CC) $(OBJ_B) $(LDFLAGS) $(LDLIBS) $(CPPFLAGS) -o $@
 				@echo "\n$(GREEN)$@ compiled!$(DEF_COLOUR)"
 
@@ -89,16 +89,16 @@ $(OBJDIR):
 				@mkdir -p $@
 
 clean:
-				@$(MAKE) clean -C ./libft
-				@$(MAKE) clean -C ./mlx_linux
+				@$(MAKE) clean --no-print-directory -C ./libft
+				@$(MAKE) clean --no-print-directory -C ./mlx_linux
 				@rm -rf $(OBJDIR)
-				@echo "$(BLUE)object files cleaned!$(DEF_COLOUR)"
+				@echo "$(BLUE)object files cleaned!$(DEF_COLOUR)\n"
 fclean: 		clean
-				@$(MAKE) fclean -C ./libft
-				@$(MAKE) clean -C ./mlx_linux
+				@$(MAKE) fclean --no-print-directory -C ./libft
+				@$(MAKE) clean --no-print-directory -C ./mlx_linux
 				@rm -f $(NAME)
 				@rm -f $(BONUSNAME)
-				@echo "$(CYAN)executable & object files cleaned!$(DEF_COLOUR)"
+				@echo "$(CYAN)executable cleaned!$(DEF_COLOUR)"
 
 re: 			fclean all
 
@@ -116,4 +116,4 @@ valgr_b:
 						./super_fdf ./maps/japan.fdf
 				@less ./valgrind-out.txt
 
-.PHONY: 		all clean fclean re
+.PHONY: 		all bonus clean fclean re valgr valgr_b
