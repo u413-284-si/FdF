@@ -75,4 +75,5 @@ Enjoy!
 ![france](img/fract.png)
 
 ## Contact & contribute
-To contact me and for feedback in order to fix bugs/improve the project you may write me a message to **sqiu@student.42vienna.com**.
+
+To contact me and for feedback in order to fix bugs/improve the project you may write me a message to Discord u413q#6851. Or simply create a merge request ;)
