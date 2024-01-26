@@ -37,7 +37,7 @@ The line drawing algorithm used is Bresenhams algorithm.
 ## Installation
 
 ```
-git clone git@github.com:u413-284-si/FdF.git fdf
+git clone --recursive git@github.com:u413-284-si/FdF.git fdf
 cd fdf
 make
 ./fdf ./maps/<choose a map>
